@@ -12,28 +12,15 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
-    // 1 User belongs to 1 Rol
-    public function rol(){
-        return $this->belongsTo(Rol::class);
-    }
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'name',
         'email',
         'password',
-        'name',
-        'last_name',
-        'dni',
-        'mobile',
-        'address',
-        'town',
-        'birth',
-        'cv',
-        'rol_id'
     ];
 
     /**
