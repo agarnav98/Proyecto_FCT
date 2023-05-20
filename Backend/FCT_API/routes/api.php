@@ -17,10 +17,9 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::post('login', [AuthController::class, 'authenticate']);
-Route::post('register', [AuthController::class, 'register']);
-
 Route::group(['middleware' => ['jwt.verify']], function() {
     // Everything in this group requires user verification.
+    Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('user', [AuthController::class, 'getUser']);
 });
