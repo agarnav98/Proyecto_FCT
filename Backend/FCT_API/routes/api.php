@@ -23,4 +23,5 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('user', [AuthController::class, 'getUser']);
+    Route::delete('users/{id}', [AuthController::class, 'destroy']);
 });

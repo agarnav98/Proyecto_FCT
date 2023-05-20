@@ -9,10 +9,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
 
+use App\Models\Candidacy;
+
 class AuthController extends Controller
 {
 
-    // Register new user function
+    /**
+     * Register new user function.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
     public function register(Request $request)
     {
         // Authentication required
@@ -99,7 +106,12 @@ class AuthController extends Controller
         ], 200);
     }
 
-    // Login user function
+    /**
+     * Login user function.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
     public function authenticate(Request $request)
     {
         // Request only the email and password
@@ -147,7 +159,12 @@ class AuthController extends Controller
         ], 200);
     }
 
-    // Logout user function to destroy token and disconnect user 
+    /**
+     * Logout user function to destroy token and disconnect user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */ 
     public function logout(Request $request)
     {
         try 
@@ -168,8 +185,13 @@ class AuthController extends Controller
                 ], 500);
         } 
     }
-
-    // Get user data function.
+ 
+    /**
+     * Get user data function.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
     public function getUser(Request $request)
     {
         // Authentication required
@@ -191,4 +213,63 @@ class AuthController extends Controller
         ], 200);
     }
 
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+        elseif($user->rol_id != 1)
+        {
+            // Only users with rol 1 can destroy
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission',
+            ], 401);
+        }
+
+        // Find the user
+        $destroyUser = User::find($id);
+
+        if (!$destroyUser)
+        {
+            // Error user does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not exist',
+            ], 404);
+        }
+
+        // Find if the user has associated candidacies 
+        $candidaciesUser = Candidacy::where('user_id', $id)->exists();
+
+        if ($candidaciesUser){
+            // Error user has associated candidacies
+            return response()->json([
+                'status' => false,
+                'message' => 'User has associated candidacies',
+            ], 409);       
+        }
+        else {
+            // Delete user
+            $destroyUser->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'User deleted'
+            ], 200); 
+        }
+    }
 }
