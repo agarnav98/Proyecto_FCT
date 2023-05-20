@@ -15,14 +15,54 @@ class AuthController extends Controller
     // Register new user function
     public function register(Request $request)
     {
-        // Request only the name, email and password
-        $data = $request->only('name', 'email', 'password');
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+        elseif($user->rol_id != 1)
+        {
+            // Only users with rol 1 can register
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission',
+            ], 401);
+        }
+
+        // Request only past data
+        $data = $request->only(
+            'email',  
+            'password',
+            'name', 
+            'last_name',
+            'dni',
+            'mobile',
+            'address',
+            'town',
+            'birth',
+            'cv',
+            'rol_id'
+        );
 
         // Data request validation
         $validator = Validator::make($data, [
-            'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6|max:50',
+            'name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:100',
+            'dni' => 'required|string|max:15|unique:users',
+            'mobile' => 'required|string|max:15',
+            'address' => 'required|string',
+            'town' => 'required|string|max:15',
+            'birth' => 'date',
+            'cv' => 'string',
+            'rol_id' => 'required|in:1,2'
         ]);
 
         // Returning error if validation fails
@@ -35,18 +75,27 @@ class AuthController extends Controller
         }
 
         // Create a new user if validation is successful
-        $user = User::create([
-            'name' => $request->name,
+        $newUser = User::create([
             'email' => $request->email,
             // Encrypt password for security
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'dni' => $request->dni,
+            'mobile' => $request->mobile,
+            'address' => $request->address,
+            'town' => $request->town,
+            'birth' => $request->birth,
+            'cv' => $request->cv,
+            'rol_id' => $request->rol_id
+
         ]);
 
         // Return the response with the new user data
         return response()->json([
             'status' => true,
             'message' => 'User successfully created',
-            'user' => $user
+            'user' => $newUser
         ], 200);
     }
 
