@@ -2,7 +2,9 @@
 
 namespace App\Utils;
 
-class UtilsValidator{
+class UtilsValidator
+{
+
  /**
   * Method that validates DNI
   *
@@ -11,7 +13,7 @@ class UtilsValidator{
   */
   static function validatorDNI(string $dni): bool
   {
-    $letters = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L" ,"C" ,"K" , "E" ];
+    $letters = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L" ,"C" ,"K" , "E"];
     $status = false;
     // Check if DNI has 9 digits
     if (strlen($dni) == 9)
@@ -32,11 +34,33 @@ class UtilsValidator{
         $position = $dniNumber % 23;
 
         // If the letter obtained from the array matches the letter that the DNI has received, it is correct
-        if ($letters[$position] == strtoupper($dniLetter) )
+        if ($letters[$position] == strtoupper($dniLetter))
         {
             $status = true;
         }
       }
+    }
+    return $status;
+  }
+
+ /**
+  * Method that validates Password
+  *
+  * From 8 to 16 characters and must contain:
+  * At least one digit.
+  * At least one lowercase letter.
+  * At least one uppercase letter.
+  * At least a special character.
+  * @param {string} $password
+  * @return {bool}
+  */
+  static function validatorPassword(string $password): bool
+  {
+    $status = false;
+    // Password regex
+    if (preg_match_all('$\S*(?=\S{8,16})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $password))
+    {
+      $status = true;
     }
     return $status;
   }

@@ -65,20 +65,42 @@ class UserController extends Controller
             'rol_id'
         );
 
-        // Data request validation
-        $validator = Validator::make($data, [
+        // Rules to validate the data
+        $rules = [
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:6|max:50',
+            'password' => 'required|string|min:8|max:16',
             'name' => 'required|string|max:50',
             'last_name' => 'required|string|max:100',
-            'dni' => 'required|string|max:9|unique:users',
+            'dni' => 'required|string|size:9|unique:users',
             'mobile' => 'required|string|max:15',
             'address' => 'required|string',
             'town' => 'required|string|max:15',
             'birth' => 'date',
             'cv' => 'string',
             'rol_id' => 'required|in:1,2'
-        ]);
+        ];
+
+        // Sustom messages for validation
+        $messages = [
+            'email.required' => 'Email requerido.',
+            'email' => 'Email inválido',
+            'email.unique' => 'El email ya ha sido registrado',
+            'password.required' => 'Contraseña requerida',
+            'password' => 'La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
+            'name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:100',
+            'dni' => 'required|string|size:9|unique:users',
+            'mobile' => 'required|string|max:15',
+            'address' => 'required|string',
+            'town' => 'required|string|max:15',
+            'birth' => 'date',
+            'cv' => 'string',
+            'rol_id' => 'required|in:1,2'
+        ];
+
+
+        // Data request validation
+        $validator = Validator::make($data, $rules, $messages);
 
         // Returning error if validation fails
         if ($validator->fails())
@@ -88,10 +110,17 @@ class UserController extends Controller
                 'message' => $validator->messages()
             ], 400);
         }
-        elseif (!UtilsValidator::validatorDNI($request->dni)){
+        if (!UtilsValidator::validatorPassword($request->password)){
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid DNI'
+                'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
+            ], 400);            
+        }
+        // DNI Validation
+        if (!UtilsValidator::validatorDNI($request->dni)){
+            return response()->json([
+                'status' => false,
+                'message' => ['dni' => ['DNI inválido.']]
             ], 400);            
         }
 
