@@ -58,10 +58,6 @@ class UserController extends Controller
             'last_name',
             'dni',
             'mobile',
-            'address',
-            'town',
-            'birth',
-            'cv',
             'rol_id'
         );
 
@@ -69,32 +65,30 @@ class UserController extends Controller
         $rules = [
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|max:16',
-            'name' => 'required|string|max:50',
-            'last_name' => 'required|string|max:100',
+            'name' => 'required|string|max:35',
+            'last_name' => 'required|string|max:35',
             'dni' => 'required|string|size:9|unique:users',
-            'mobile' => 'required|string|max:15',
-            'address' => 'required|string',
-            'town' => 'required|string|max:15',
-            'birth' => 'date',
-            'cv' => 'string',
+            'mobile' => 'required|string|max:15|unique:users',
             'rol_id' => 'required|in:1,2'
         ];
 
-        // Sustom messages for validation
+        // Custom messages for validation
         $messages = [
             'email.required' => 'Email requerido.',
-            'email' => 'Email inválido',
             'email.unique' => 'El email ya ha sido registrado',
+            'email' => 'Email inválido',
             'password.required' => 'Contraseña requerida',
-            'password' => 'La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
-            'name' => 'required|string|max:50',
-            'last_name' => 'required|string|max:100',
-            'dni' => 'required|string|size:9|unique:users',
+            'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
+            'name.required' => 'Nombre requerido.',
+            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.max' => 'El nombre no debe superar los :max caracteres.',
+            'last_name.required' => 'Apellido requerido.',
+            'last_name.string' => 'El apellido debe ser una cadena de texto.',
+            'last_name.max' => 'El apellido no debe superar los :max caracteres.',
+            'dni.required' => 'DNI requerido.',
+            'dni.unique' => 'El DNI ya ha sido registrado.',
+            'dni' => 'DNI Inválido.',
             'mobile' => 'required|string|max:15',
-            'address' => 'required|string',
-            'town' => 'required|string|max:15',
-            'birth' => 'date',
-            'cv' => 'string',
             'rol_id' => 'required|in:1,2'
         ];
 
@@ -133,10 +127,6 @@ class UserController extends Controller
             'last_name' => $request->last_name,
             'dni' => $request->dni,
             'mobile' => $request->mobile,
-            'address' => $request->address,
-            'town' => $request->town,
-            'birth' => $request->birth,
-            'cv' => $request->cv,
             'rol_id' => $request->rol_id
 
         ]);
