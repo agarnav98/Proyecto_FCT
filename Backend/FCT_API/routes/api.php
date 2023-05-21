@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,11 +17,10 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::post('login', [AuthController::class, 'authenticate']);
-
 Route::group(['middleware' => ['jwt.verify']], function() {
     // Everything in this group requires user verification.
-    Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('user', [AuthController::class, 'getUser']);
-    Route::delete('users/{id}', [AuthController::class, 'destroy']);
+    Route::post('register', [UserController::class, 'store']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
 });
