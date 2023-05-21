@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('name', 50);
             $table->string('last_name', 100);
-            $table->string('dni', 15)->unique();
+            $table->string('dni', 9)->unique();
             $table->string('mobile', 15);
             $table->string('address');
             $table->string('town', 150);

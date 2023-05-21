@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use App\Models\User;
+use App\Models\Candidacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
-use App\Models\Candidacy;
+use App\Utils\UtilsValidator;
 
 class UserController extends Controller
 {
@@ -71,7 +71,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6|max:50',
             'name' => 'required|string|max:50',
             'last_name' => 'required|string|max:100',
-            'dni' => 'required|string|max:15|unique:users',
+            'dni' => 'required|string|max:9|unique:users',
             'mobile' => 'required|string|max:15',
             'address' => 'required|string',
             'town' => 'required|string|max:15',
@@ -87,6 +87,12 @@ class UserController extends Controller
                 'status' => false,
                 'message' => $validator->messages()
             ], 400);
+        }
+        elseif (!UtilsValidator::validatorDNI($request->dni)){
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid DNI'
+            ], 400);            
         }
 
         // Create a new user if validation is successful
