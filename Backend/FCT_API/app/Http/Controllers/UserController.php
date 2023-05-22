@@ -11,7 +11,6 @@ use App\Utils\UtilsValidator;
 
 class UserController extends Controller
 {
-
     /**
      * Display a listing of all users.
      *
@@ -36,7 +35,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
-            ], 401);
+            ], 403);
         }
 
         // List all users
@@ -74,7 +73,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
-            ], 401);
+            ], 403);
         }
 
         // Request only past data
@@ -174,7 +173,7 @@ class UserController extends Controller
             'status' => true,
             'message' => 'User successfully created',
             'user' => $newUser
-        ], 200);
+        ], 201);
     }
 
     /**
@@ -276,7 +275,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
-            ], 401);
+            ], 403);
         }
         
         // Find the user
@@ -451,7 +450,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
-            ], 401);
+            ], 403);
         }
 
         // Find the user

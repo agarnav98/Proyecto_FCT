@@ -86,7 +86,7 @@ class AuthController extends Controller
             return response()->json([
                     'status' => false,
                     'message' => 'Failed to disconnect user'
-                ], 500);
+            ], 500);
         } 
     }
 }
