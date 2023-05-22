@@ -230,6 +230,24 @@ class UserController extends Controller
                 'message' => 'User does not have permission',
             ], 401);
         }
+
+        // Find the user
+        $showUser = User::with('rol')->find($id);
+
+        if (!$showUser)
+        {
+            // Error user does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not exist',
+            ], 404);
+        }
+
+        // Return user data
+        return response()->json([
+            'status' => true,
+            'user' => $showUser
+        ], 200);      
     }
 
     /**

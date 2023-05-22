@@ -17,6 +17,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(Rol::class);
     }
 
+    // 1 User has N Candidacies
+    public function candidacies(){
+        return $this->hasMany(Candidacy::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

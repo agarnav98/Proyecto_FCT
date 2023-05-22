@@ -23,5 +23,6 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('register', [UserController::class, 'store']);
     Route::get('users', [UserController::class, 'index']);
     Route::get('user', [UserController::class, 'getUser']);
+    Route::get('users/{id}', [UserController::class, 'show']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
 });
