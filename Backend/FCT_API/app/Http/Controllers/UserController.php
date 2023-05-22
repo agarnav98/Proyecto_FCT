@@ -13,13 +13,40 @@ class UserController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of all users.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+        elseif($user->rol_id != 1)
+        {
+            // Only users with rol 1 can display the list
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission',
+            ], 401);
+        }
+
+        // List all users
+        $users = User::all();
+
+        // Return the response with the new user data
+        return response()->json([
+            'status' => true,
+            'users' => $users,
+        ], 200);
     }
 
     /**
@@ -147,6 +174,33 @@ class UserController extends Controller
             'status' => true,
             'message' => 'User successfully created',
             'user' => $newUser
+        ], 200);
+    }
+
+    /**
+     * Get user data function.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
+    public function getUser(Request $request)
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+
+        // Return user data
+        return response()->json([
+            'status' => true,
+            'user' => $user
         ], 200);
     }
 

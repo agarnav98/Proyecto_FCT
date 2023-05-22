@@ -89,31 +89,4 @@ class AuthController extends Controller
                 ], 500);
         } 
     }
- 
-    /**
-     * Get user data function.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return json
-     */
-    public function getUser(Request $request)
-    {
-        // Authentication required
-        $user = JWTAuth::parseToken()->authenticate();
-
-        if(!$user)
-        {
-            // Error invalid token
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid Token / Expired Token',
-            ], 401);
-        }
-
-        // Return user data
-        return response()->json([
-            'status' => true,
-            'user' => $user
-        ], 200);
-    }
 }
