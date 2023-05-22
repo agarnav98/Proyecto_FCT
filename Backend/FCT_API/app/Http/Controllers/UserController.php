@@ -40,7 +40,7 @@ class UserController extends Controller
         }
 
         // List all users
-        $users = User::all();
+        $users = User::with('rol')->get();
 
         // Return the response with the new user data
         return response()->json([
@@ -50,7 +50,7 @@ class UserController extends Controller
     }
 
     /**
-     * Register new user function.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return json
@@ -178,12 +178,11 @@ class UserController extends Controller
     }
 
     /**
-     * Get user data function.
+     * Display the user logged data.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return json
      */
-    public function getUser(Request $request)
+    public function getUser()
     {
         // Authentication required
         $user = JWTAuth::parseToken()->authenticate();
@@ -200,19 +199,37 @@ class UserController extends Controller
         // Return user data
         return response()->json([
             'status' => true,
-            'user' => $user
+            'user' => $user->with('rol')->find($user->id)
         ], 200);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+        elseif($user->rol_id != 1)
+        {
+            // Only users with rol 1 can register
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission',
+            ], 401);
+        }
     }
 
     /**
