@@ -64,4 +64,21 @@ class UtilsValidator
     }
     return $status;
   }
+
+ /**
+  * Method that validates Mobile Number
+  *
+  * @param {string} $mobile
+  * @return {bool}
+  */
+  static function validatorMobile(string $mobile): bool
+  {
+    $status = false;
+    // Password regex
+    if (preg_match_all('/^(\+\d{1,3}[- ]?)?\d{9,10}$/', $mobile))
+    {
+      $status = true;
+    }
+    return $status;
+  }  
 }

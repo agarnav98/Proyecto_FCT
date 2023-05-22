@@ -68,7 +68,7 @@ class UserController extends Controller
             'name' => 'required|string|max:35',
             'last_name' => 'required|string|max:35',
             'dni' => 'required|string|size:9|unique:users',
-            'mobile' => 'required|string|max:15|unique:users',
+            'mobile' => 'required|string|min:9|max:15|unique:users',
             'rol_id' => 'required|in:1,2'
         ];
 
@@ -88,7 +88,9 @@ class UserController extends Controller
             'dni.required' => 'DNI requerido.',
             'dni.unique' => 'El DNI ya ha sido registrado.',
             'dni' => 'DNI Inválido.',
-            'mobile' => 'required|string|max:15',
+            'mobile.required' => 'Número de teléfono requerido.',
+            'mobile.unique' => 'El número de teléfono ya ha sido registrado.',
+            'mobile' => 'Número de teléfono inválido.',
             'rol_id' => 'required|in:1,2'
         ];
 
@@ -104,6 +106,7 @@ class UserController extends Controller
                 'message' => $validator->messages()
             ], 400);
         }
+        // Password Validation
         if (!UtilsValidator::validatorPassword($request->password)){
             return response()->json([
                 'status' => false,
@@ -115,6 +118,13 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => ['dni' => ['DNI inválido.']]
+            ], 400);            
+        }
+        // Mobile Validation
+        if (!UtilsValidator::validatorMobile($request->mobile)){
+            return response()->json([
+                'status' => false,
+                'message' => ['mobile' => ['Número de teléfono inválido.']]
             ], 400);            
         }
 
