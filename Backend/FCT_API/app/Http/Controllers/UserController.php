@@ -91,7 +91,8 @@ class UserController extends Controller
             'mobile.required' => 'Número de teléfono requerido.',
             'mobile.unique' => 'El número de teléfono ya ha sido registrado.',
             'mobile' => 'Número de teléfono inválido.',
-            'rol_id' => 'required|in:1,2'
+            'rol_id.required' => 'Rol requerido.',
+            'rol_id' => 'Rol inválido.'
         ];
 
 
