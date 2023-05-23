@@ -162,7 +162,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'name' => $request->name,
             'last_name' => $request->last_name,
-            'dni' => $request->dni,
+            'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
             'rol_id' => $request->rol_id
 
@@ -308,20 +308,24 @@ class UserController extends Controller
 
         // Update fields with unique rules
         $emailRule = 'required|email|max:255|unique:users';
-        if ($request->email == $updateUser->email){
+        if ($request->email == $updateUser->email)
+        {
             $emailRule = 'required|email|max:255';
         }
         $dniRule = 'required|string|size:9|unique:users';
-        if ($request->dni == $updateUser->dni){
+        if (strtoupper($request->dni) == strtoupper($updateUser->dni))
+        {
             $dniRule = 'required|string|size:9';
         }
         $mobileRule = 'required|string|min:9|max:15|unique:users';
-        if ($request->mobile == $updateUser->mobile){
+        if ($request->mobile == $updateUser->mobile)
+        {
             $mobileRule = 'required|string|min:9|max:15';
         }
         // Update password only if a new one is received
         $passwordRule = 'string|min:8|max:16';
-        if ($request->password == null){
+        if ($request->password == null)
+        {
             $passwordRule = '';
         }
 
@@ -414,7 +418,7 @@ class UserController extends Controller
             'email' => $request->email,
             'name' => $request->name,
             'last_name' => $request->last_name,
-            'dni' => $request->dni,
+            'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
             'address' => $request->address, 
             'town' => $request->town,
@@ -608,14 +612,16 @@ class UserController extends Controller
         // Find if the user has associated candidacies 
         $candidaciesUser = Candidacy::where('user_id', $id)->exists();
 
-        if ($candidaciesUser){
+        if ($candidaciesUser)
+        {
             // Error user has associated candidacies
             return response()->json([
                 'status' => false,
                 'message' => 'User has associated candidacies',
             ], 409);       
         }
-        else {
+        else 
+        {
             // Delete user
             $destroyUser->delete();
             return response()->json([

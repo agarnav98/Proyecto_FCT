@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('candidacies', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
+            $table->boolean('status')->nullable();
             $table->foreignId('company_id');
             $table->foreignId('user_id');
             $table->timestamps();

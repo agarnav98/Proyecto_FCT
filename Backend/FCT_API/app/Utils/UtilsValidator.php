@@ -11,7 +11,7 @@ class UtilsValidator
   * @param {string} $dni
   * @return {bool}
   */
-  static function validatorDNI(string $dni): bool
+  public static function validatorDNI(string $dni): bool
   {
     $letters = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L" ,"C" ,"K" , "E"];
     $status = false;
@@ -54,7 +54,7 @@ class UtilsValidator
   * @param {string} $password
   * @return {bool}
   */
-  static function validatorPassword(string $password): bool
+  public static function validatorPassword(string $password): bool
   {
     $status = false;
     // Password regex
@@ -71,7 +71,7 @@ class UtilsValidator
   * @param {string} $mobile
   * @return {bool}
   */
-  static function validatorMobile(string $mobile): bool
+  public static function validatorMobile(string $mobile): bool
   {
     $status = false;
     // Password regex

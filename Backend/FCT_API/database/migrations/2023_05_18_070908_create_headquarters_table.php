@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('mobile', 15);
             $table->string('address');
-            $table->string('town', 150);
+            $table->string('town', 35);
             $table->foreignId('company_id');
             $table->timestamps();
             // Relations
