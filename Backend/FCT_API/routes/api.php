@@ -20,11 +20,12 @@ Route::post('login', [AuthController::class, 'authenticate']);
 Route::group(['middleware' => ['jwt.verify']], function() {
     // Everything in this group requires user verification.
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('register', [UserController::class, 'store']);
-
+    // User CRUD
     Route::get('users', [UserController::class, 'index']);
-    Route::get('user', [UserController::class, 'getUser']);
+    Route::post('register', [UserController::class, 'store']);
     Route::get('users/{id}', [UserController::class, 'show']);
+    Route::get('user', [UserController::class, 'getUser']);
     Route::put('users/{id}', [UserController::class, 'update']);
+    Route::put('user', [UserController::class, 'change']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
 });

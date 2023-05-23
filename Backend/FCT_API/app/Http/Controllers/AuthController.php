@@ -39,7 +39,8 @@ class AuthController extends Controller
         // Try to login
         try 
         {
-            if (!$token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials)) 
+            {
                 // Incorrect credentials
                 return response()->json([
                     'status' => false,

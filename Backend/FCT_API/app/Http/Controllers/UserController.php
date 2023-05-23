@@ -14,7 +14,7 @@ class UserController extends Controller
     /**
      * Display a listing of all users.
      *
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function index()
     {
@@ -177,36 +177,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the user logged data.
-     *
-     * @return json
-     */
-    public function getUser()
-    {
-        // Authentication required
-        $user = JWTAuth::parseToken()->authenticate();
-
-        if(!$user)
-        {
-            // Error invalid token
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid Token / Expired Token',
-            ], 401);
-        }
-
-        // Return user data
-        return response()->json([
-            'status' => true,
-            'user' => $user->with('rol')->find($user->id)
-        ], 200);
-    }
-
-    /**
      * Display the specified user.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function show($id)
     {
@@ -250,11 +224,37 @@ class UserController extends Controller
     }
 
     /**
+     * Display the user logged data.
+     *
+     * @return json
+     */
+    public function getUser()
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+
+        // Return user data
+        return response()->json([
+            'status' => true,
+            'user' => $user->with('rol')->find($user->id)
+        ], 200);
+    }
+    
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function update(Request $request, $id)
     {
@@ -301,6 +301,7 @@ class UserController extends Controller
             'address',
             'town',
             'birth',
+            'preferences',
             'cv',
             'rol_id'
         );
@@ -318,11 +319,16 @@ class UserController extends Controller
         if ($request->mobile == $updateUser->mobile){
             $mobileRule = 'required|string|min:9|max:15';
         }
+        // Update password only if a new one is received
+        $passwordRule = 'string|min:8|max:16';
+        if ($request->password == null){
+            $passwordRule = '';
+        }
 
         // Rules to validate the data
         $rules = [
             'email' => $emailRule,
-            'password' => 'required|string|min:8|max:16',
+            'password' => $passwordRule,
             'name' => 'required|string|max:35',
             'last_name' => 'required|string|max:35',
             'dni' => $dniRule,
@@ -340,7 +346,6 @@ class UserController extends Controller
             'email.required' => 'Email requerido.',
             'email.unique' => 'El email ya ha sido registrado',
             'email' => 'Email inválido',
-            'password.required' => 'Contraseña requerida',
             'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
             'name.required' => 'Nombre requerido.',
             'name.string' => 'El nombre debe ser una cadena de texto.',
@@ -378,21 +383,26 @@ class UserController extends Controller
             ], 400);
         }
         // Password Validation
-        if (!UtilsValidator::validatorPassword($request->password)){
-            return response()->json([
-                'status' => false,
-                'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
-            ], 400);            
+        if ($request->password != null)
+        {
+            if (!UtilsValidator::validatorPassword($request->password)){
+                return response()->json([
+                    'status' => false,
+                    'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
+                ], 400);            
+            }
         }
         // DNI Validation
-        if (!UtilsValidator::validatorDNI($request->dni)){
+        if (!UtilsValidator::validatorDNI($request->dni))
+        {
             return response()->json([
                 'status' => false,
                 'message' => ['dni' => ['DNI inválido.']]
             ], 400);            
         }
         // Mobile Validation
-        if (!UtilsValidator::validatorMobile($request->mobile)){
+        if (!UtilsValidator::validatorMobile($request->mobile))
+        {
             return response()->json([
                 'status' => false,
                 'message' => ['mobile' => ['Número de teléfono inválido.']]
@@ -402,8 +412,6 @@ class UserController extends Controller
         // Update user if validation is successful
         $updateUser->update([
             'email' => $request->email,
-            // Encrypt password for security
-            'password' => bcrypt($request->password),
             'name' => $request->name,
             'last_name' => $request->last_name,
             'dni' => $request->dni,
@@ -414,8 +422,16 @@ class UserController extends Controller
             'preferences' => $request->preferences,
             'cv' => $request->cv,
             'rol_id' => $request->rol_id
-
         ]);
+        
+        // Update password only if a new one is received
+        if ($request->password != null)
+        {
+            // Encrypt password for security
+            $updateUser->update([
+                'password' => bcrypt($request->password),
+            ]);
+        }
 
         // Return the response with the new user data
         return response()->json([
@@ -426,10 +442,134 @@ class UserController extends Controller
     }
 
     /**
+     * Change the specified fields of the user logged.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
+    public function change(Request $request)
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+
+        // Request only past data
+        $data = $request->only(
+            'password',
+            'mobile',
+            'address',
+            'town',
+            'birth',
+            'preferences',
+            'cv',
+        );
+
+        // Update fields with unique rules
+        $mobileRule = 'required|string|min:9|max:15|unique:users';
+        if ($request->mobile == $user->mobile){
+            $mobileRule = 'required|string|min:9|max:15';
+        }
+        // Update password only if a new one is received
+        $passwordRule = 'string|min:8|max:16';
+        if ($request->password == null){
+            $passwordRule = '';
+        }
+
+        // Rules to validate the data
+        $rules = [
+            'password' => $passwordRule,
+            'mobile' => $mobileRule,
+            'address'=> 'string|max:255',
+            'town' => 'string|max:35',
+            'birth' => 'date',
+            'preferences' => 'string',
+            'cv' => 'string|max:255',
+        ];
+
+        // Custom messages for validation
+        $messages = [
+            'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
+            'mobile.required' => 'Número de teléfono requerido.',
+            'mobile.unique' => 'El número de teléfono ya ha sido registrado.',
+            'mobile' => 'Número de teléfono inválido.',
+            'address.string' => 'La dirección debe ser una cadena de texto.',
+            'address.max' => 'La dirección no debe superar los :max caracteres.',
+            'town.string' => 'La localidad debe ser una cadena de texto.',
+            'town.max' => 'La localidad no debe superar los :max caracteres.',
+            'birth' => 'Formato de fecha no válido.',
+            'preferences' => 'Las preferencias debe ser una cadena de texto.',
+            'cv' => 'Formato del documento no válido.',
+        ];
+
+
+        // Data request validation
+        $validator = Validator::make($data, $rules, $messages);
+
+        // Returning error if validation fails
+        if ($validator->fails())
+        {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->messages()
+            ], 400);
+        }
+        // Password Validation
+        if ($request->password != null)
+        {
+            if (!UtilsValidator::validatorPassword($request->password)){
+                return response()->json([
+                    'status' => false,
+                    'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
+                ], 400);            
+            }
+        }
+        // Mobile Validation
+        if (!UtilsValidator::validatorMobile($request->mobile)){
+            return response()->json([
+                'status' => false,
+                'message' => ['mobile' => ['Número de teléfono inválido.']]
+            ], 400);            
+        }
+
+        // Update user if validation is successful
+        $user->update([
+            'mobile' => $request->mobile,
+            'address' => $request->address, 
+            'town' => $request->town,
+            'birth' => $request->birth,
+            'preferences' => $request->preferences,
+            'cv' => $request->cv,
+        ]);
+
+        // Update password only if a new one is received
+        if ($request->password != null){
+            // Encrypt password for security
+            $user->update([
+                'password' => bcrypt($request->password),
+            ]);
+        }
+
+        // Return the response with the new user data
+        return response()->json([
+            'status' => true,
+            'message' => 'User successfully updated',
+            'user' => $user
+        ], 200);
+    }
+
+    /**
      * Remove the specified user from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function destroy($id)
     {
