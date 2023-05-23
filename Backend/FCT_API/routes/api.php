@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +24,9 @@ Route::group(['middleware' => ['jwt.verify']], function()
 {
     Route::post('logout', [AuthController::class, 'logout']);
     
+    // Role CRUD
+    Route::get('roles', [RoleController::class, 'index']);
+
     // User CRUD
     Route::get('users', [UserController::class, 'index']);
     Route::post('register', [UserController::class, 'store']);

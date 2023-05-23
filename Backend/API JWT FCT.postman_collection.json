@@ -405,7 +405,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODY0ODQzLCJleHAiOjE2ODQ4Njg0NDMsIm5iZiI6MTY4NDg2NDg0MywianRpIjoiS3B0akRRSThiQ3c5a2RiQSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.d4NZLY37RR_9plI-EkwDOwRoKmptKmoHdDO0gjSWYhY",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcyMTY1LCJleHAiOjE2ODQ4NzU3NjUsIm5iZiI6MTY4NDg3MjE2NSwianRpIjoiQXhGb1FpS3lFVWJGOGtHMSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.q21wdiH4VEw4VkZVDZoO9qkIKikzsJDoyfICzIkmde0",
 									"type": "string"
 								}
 							]
@@ -413,7 +413,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/users",
+							"raw": "http://127.0.0.1:8000/api/roles",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -424,7 +424,7 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"users"
+								"roles"
 							]
 						}
 					},

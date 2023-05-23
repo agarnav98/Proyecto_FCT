@@ -35,12 +35,12 @@ class RoleController extends Controller
         }
 
         // List all users
-        $users = User::with('role')->get();
+        $roles = Role::all();
 
-        // Return the response with the new user data
+        // Return the response with the role list
         return response()->json([
             'status' => true,
-            'users' => $users,
+            'roles' => $roles,
         ], 200);
     }
 }

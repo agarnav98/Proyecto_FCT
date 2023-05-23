@@ -41,7 +41,7 @@ class UserController extends Controller
         // List all users
         $users = User::with('role')->get();
 
-        // Return the response with the new user data
+        // Return the response with the user list
         return response()->json([
             'status' => true,
             'users' => $users,
