@@ -29,9 +29,9 @@ class UserController extends Controller
                 'message' => 'Invalid Token / Expired Token',
             ], 401);
         }
-        elseif($user->rol_id != 1)
+        elseif($user->role_id != 1)
         {
-            // Only users with rol 1 can display the list
+            // Only users with role 1 can display the list
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
@@ -39,7 +39,7 @@ class UserController extends Controller
         }
 
         // List all users
-        $users = User::with('rol')->get();
+        $users = User::with('role')->get();
 
         // Return the response with the new user data
         return response()->json([
@@ -67,9 +67,9 @@ class UserController extends Controller
                 'message' => 'Invalid Token / Expired Token',
             ], 401);
         }
-        elseif($user->rol_id != 1)
+        elseif($user->role_id != 1)
         {
-            // Only users with rol 1 can register
+            // Only users with role 1 can register
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
@@ -84,7 +84,7 @@ class UserController extends Controller
             'last_name',
             'dni',
             'mobile',
-            'rol_id'
+            'role_id'
         );
 
         // Rules to validate the data
@@ -95,7 +95,7 @@ class UserController extends Controller
             'last_name' => 'required|string|max:35',
             'dni' => 'required|string|size:9|unique:users',
             'mobile' => 'required|string|min:9|max:15|unique:users',
-            'rol_id' => 'required|in:1,2'
+            'role_id' => 'required|in:1,2'
         ];
 
         // Custom messages for validation
@@ -117,8 +117,8 @@ class UserController extends Controller
             'mobile.required' => 'Número de teléfono requerido.',
             'mobile.unique' => 'El número de teléfono ya ha sido registrado.',
             'mobile' => 'Número de teléfono inválido.',
-            'rol_id.required' => 'Rol requerido.',
-            'rol_id' => 'Rol inválido.'
+            'role_id.required' => 'Rol requerido.',
+            'role_id' => 'Rol inválido.'
         ];
 
 
@@ -164,7 +164,7 @@ class UserController extends Controller
             'last_name' => $request->last_name,
             'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
-            'rol_id' => $request->rol_id
+            'role_id' => $request->role_id
 
         ]);
 
@@ -195,9 +195,9 @@ class UserController extends Controller
                 'message' => 'Invalid Token / Expired Token',
             ], 401);
         }
-        elseif($user->rol_id != 1)
+        elseif($user->role_id != 1)
         {
-            // Only users with rol 1 can register
+            // Only users with role 1 can register
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
@@ -205,7 +205,7 @@ class UserController extends Controller
         }
 
         // Find the user
-        $showUser = User::with('rol')->find($id);
+        $showUser = User::with('role')->find($id);
 
         if (!$showUser)
         {
@@ -245,7 +245,7 @@ class UserController extends Controller
         // Return user data
         return response()->json([
             'status' => true,
-            'user' => $user->with('rol')->find($user->id)
+            'user' => $user->with('role')->find($user->id)
         ], 200);
     }
     
@@ -269,9 +269,9 @@ class UserController extends Controller
                 'message' => 'Invalid Token / Expired Token',
             ], 401);
         }
-        elseif($user->rol_id != 1)
+        elseif($user->role_id != 1)
         {
-            // Only users with rol 1 can register
+            // Only users with role 1 can register
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',
@@ -303,7 +303,7 @@ class UserController extends Controller
             'birth',
             'preferences',
             'cv',
-            'rol_id'
+            'role_id'
         );
 
         // Update fields with unique rules
@@ -342,7 +342,7 @@ class UserController extends Controller
             'birth' => 'date',
             'preferences' => 'string',
             'cv' => 'string|max:255',
-            'rol_id' => 'required|in:1,2'
+            'role_id' => 'required|in:1,2'
         ];
 
         // Custom messages for validation
@@ -370,8 +370,8 @@ class UserController extends Controller
             'birth' => 'Formato de fecha no válido.',
             'preferences' => 'Las preferencias debe ser una cadena de texto.',
             'cv' => 'Formato del documento no válido.',
-            'rol_id.required' => 'Rol requerido.',
-            'rol_id' => 'Rol inválido.'
+            'role_id.required' => 'Rol requerido.',
+            'role_id' => 'Rol inválido.'
         ];
 
 
@@ -425,7 +425,7 @@ class UserController extends Controller
             'birth' => $request->birth,
             'preferences' => $request->preferences,
             'cv' => $request->cv,
-            'rol_id' => $request->rol_id
+            'role_id' => $request->role_id
         ]);
         
         // Update password only if a new one is received
@@ -588,9 +588,9 @@ class UserController extends Controller
                 'message' => 'Invalid Token / Expired Token',
             ], 401);
         }
-        elseif($user->rol_id != 1)
+        elseif($user->role_id != 1)
         {
-            // Only users with rol 1 can destroy
+            // Only users with role 1 can destroy
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission',

@@ -12,9 +12,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
-    // 1 User belongs to 1 Rol
-    public function rol(){
-        return $this->belongsTo(Rol::class);
+    // 1 User belongs to 1 Role
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 
     // 1 User has N Candidacies
@@ -39,7 +39,7 @@ class User extends Authenticatable implements JWTSubject
         'birth',
         'preferences',
         'cv',
-        'rol_id'
+        'role_id'
     ];
 
     /**
