@@ -42,5 +42,5 @@ Route::group(['middleware' => ['jwt.verify']], function()
     Route::post('companies', [CompanyController::class, 'store']);
     Route::get('companies/{id}', [CompanyController::class, 'show']);
     Route::put('companies/{id}', [CompanyController::class, 'update']);
-    /*Route::delete('companies/{id}', [CompanyController::class, 'destroy']);*/    
+    Route::delete('companies/{id}', [CompanyController::class, 'destroy']);    
 });

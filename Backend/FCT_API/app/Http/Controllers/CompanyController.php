@@ -148,7 +148,7 @@ class CompanyController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
 
         // Check if user has a candidacy with company id
-        $candidacyUser = Candidacy::where('user_id', $user->id)->where('company_id', $id)->get();
+        $candidacyUser = Candidacy::where('user_id', $user->id)->where('company_id', $id)->exists();
 
         if(!$user)
         {
@@ -158,7 +158,7 @@ class CompanyController extends Controller
                 'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
-        elseif($user->role_id != 1 && count($candidacyUser) == 0)
+        elseif($user->role_id != 1 && !$candidacyUser)
         {
             // Only users with role 1 or user has a candidacy with company id can show the company
             return response()->json([
@@ -295,13 +295,64 @@ class CompanyController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified company from storage.
      *
      * @param  int  $id
      * @return json
      */
     public function destroy($id)
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+        elseif($user->role_id != 1)
+        {
+            // Only users with role 1 can destroy
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission'
+            ], 403);
+        }
+
+        // Find the company
+        $company = Company::find($id);
+
+        if (!$company)
+        {
+            // Error company does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'Company does not exist'
+            ], 404);
+        }
+
+        // Find if the company has associated candidacies 
+        $candidaciesCompany = Candidacy::where('company_id', $id)->exists();
+
+        if ($candidaciesCompany)
+        {
+            // Error user has associated candidacies
+            return response()->json([
+                'status' => false,
+                'message' => 'Company has associated candidacies'
+            ], 409);       
+        }
+        else 
+        {
+            // Delete company and associated headquarters
+            $company->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'Company and associated headquarters deleted'
+            ], 200); 
+        }
     }
 }
