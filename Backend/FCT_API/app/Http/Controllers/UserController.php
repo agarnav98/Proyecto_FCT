@@ -197,7 +197,7 @@ class UserController extends Controller
         }
         elseif($user->role_id != 1)
         {
-            // Only users with role 1 can register
+            // Only users with role 1 can show the user
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission'
@@ -271,7 +271,7 @@ class UserController extends Controller
         }
         elseif($user->role_id != 1)
         {
-            // Only users with role 1 can register
+            // Only users with role 1 can update
             return response()->json([
                 'status' => false,
                 'message' => 'User does not have permission'
