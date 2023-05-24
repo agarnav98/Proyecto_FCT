@@ -22,7 +22,7 @@ class RoleController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -30,7 +30,7 @@ class RoleController extends Controller
             // Only users with role 1 can display the list
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 403);
         }
 
@@ -40,7 +40,7 @@ class RoleController extends Controller
         // Return the response with the role list
         return response()->json([
             'status' => true,
-            'roles' => $roles,
+            'roles' => $roles
         ], 200);
     }
 }

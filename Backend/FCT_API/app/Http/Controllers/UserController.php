@@ -26,7 +26,7 @@ class UserController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -34,7 +34,7 @@ class UserController extends Controller
             // Only users with role 1 can display the list
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 403);
         }
 
@@ -44,7 +44,7 @@ class UserController extends Controller
         // Return the response with the user list
         return response()->json([
             'status' => true,
-            'users' => $users,
+            'users' => $users
         ], 200);
     }
 
@@ -64,7 +64,7 @@ class UserController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -72,7 +72,7 @@ class UserController extends Controller
             // Only users with role 1 can register
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 403);
         }
 
@@ -192,7 +192,7 @@ class UserController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -200,7 +200,7 @@ class UserController extends Controller
             // Only users with role 1 can register
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 401);
         }
 
@@ -212,7 +212,7 @@ class UserController extends Controller
             // Error user does not exist
             return response()->json([
                 'status' => false,
-                'message' => 'User does not exist',
+                'message' => 'User does not exist'
             ], 404);
         }
 
@@ -238,7 +238,7 @@ class UserController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
 
@@ -266,7 +266,7 @@ class UserController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -274,7 +274,7 @@ class UserController extends Controller
             // Only users with role 1 can register
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 403);
         }
         
@@ -286,7 +286,7 @@ class UserController extends Controller
             // Error user does not exist
             return response()->json([
                 'status' => false,
-                'message' => 'User does not exist',
+                'message' => 'User does not exist'
             ], 404);
         }
 
@@ -433,7 +433,7 @@ class UserController extends Controller
         {
             // Encrypt password for security
             $updateUser->update([
-                'password' => bcrypt($request->password),
+                'password' => bcrypt($request->password)
             ]);
         }
 
@@ -461,7 +461,7 @@ class UserController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
 
@@ -473,7 +473,7 @@ class UserController extends Controller
             'town',
             'birth',
             'preferences',
-            'cv',
+            'cv'
         );
 
         // Update fields with unique rules
@@ -495,7 +495,7 @@ class UserController extends Controller
             'town' => 'string|max:35',
             'birth' => 'date',
             'preferences' => 'string',
-            'cv' => 'string|max:255',
+            'cv' => 'string|max:255'
         ];
 
         // Custom messages for validation
@@ -510,7 +510,7 @@ class UserController extends Controller
             'town.max' => 'La localidad no debe superar los :max caracteres.',
             'birth' => 'Formato de fecha no válido.',
             'preferences' => 'Las preferencias debe ser una cadena de texto.',
-            'cv' => 'Formato del documento no válido.',
+            'cv' => 'Formato del documento no válido.'
         ];
 
 
@@ -550,14 +550,14 @@ class UserController extends Controller
             'town' => $request->town,
             'birth' => $request->birth,
             'preferences' => $request->preferences,
-            'cv' => $request->cv,
+            'cv' => $request->cv
         ]);
 
         // Update password only if a new one is received
         if ($request->password != null){
             // Encrypt password for security
             $user->update([
-                'password' => bcrypt($request->password),
+                'password' => bcrypt($request->password)
             ]);
         }
 
@@ -585,7 +585,7 @@ class UserController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -593,7 +593,7 @@ class UserController extends Controller
             // Only users with role 1 can destroy
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 403);
         }
 
@@ -605,7 +605,7 @@ class UserController extends Controller
             // Error user does not exist
             return response()->json([
                 'status' => false,
-                'message' => 'User does not exist',
+                'message' => 'User does not exist'
             ], 404);
         }
 
@@ -617,7 +617,7 @@ class UserController extends Controller
             // Error user has associated candidacies
             return response()->json([
                 'status' => false,
-                'message' => 'User has associated candidacies',
+                'message' => 'User has associated candidacies'
             ], 409);       
         }
         else 

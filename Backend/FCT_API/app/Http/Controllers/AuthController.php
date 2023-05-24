@@ -44,7 +44,7 @@ class AuthController extends Controller
                 // Incorrect credentials
                 return response()->json([
                     'status' => false,
-                    'message' => 'Login failed: incorrect credentials',
+                    'message' => 'Login failed: incorrect credentials'
                 ], 401);
             }
         } 
@@ -53,7 +53,7 @@ class AuthController extends Controller
             // Error to generate token
             return response()->json([
                 'status' => false,
-                'message' => 'Failed to generate token',
+                'message' => 'Failed to generate token'
             ], 500);
         }
 

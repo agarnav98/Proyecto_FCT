@@ -5,7 +5,7 @@ namespace App\Utils;
 class UtilsValidator
 {
  /**
-  * Method that validates DNI
+  * Method that validates DNI.
   *
   * @param {string} $dni
   * @return {bool}
@@ -43,7 +43,7 @@ class UtilsValidator
   }
 
  /**
-  * Method that validates CIF
+  * Method that validates CIF.
   *
   * @param {string} $cif
   * @return {bool}
@@ -92,7 +92,7 @@ class UtilsValidator
   } 
 
  /**
-  * Method that validates Password
+  * Method that validates Password.
   *
   * From 8 to 16 characters and must contain:
   * At least one digit.
@@ -114,7 +114,7 @@ class UtilsValidator
   }
 
  /**
-  * Method that validates Mobile Number
+  * Method that validates Mobile Number.
   *
   * @param {string} $mobile
   * @return {bool}

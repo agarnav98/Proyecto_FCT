@@ -38,7 +38,7 @@ Route::group(['middleware' => ['jwt.verify']], function()
     Route::delete('users/{id}', [UserController::class, 'destroy']);
 
     // Company CRUD
-    /*Route::get('companies', [CompanyController::class, 'index']);*/
+    Route::get('companies', [CompanyController::class, 'index']);
     Route::post('companies', [CompanyController::class, 'store']);
     /*Route::get('companies/{id}', [CompanyController::class, 'show']);
     Route::put('companies/{id}', [CompanyController::class, 'update']);

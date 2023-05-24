@@ -11,13 +11,40 @@ use App\Utils\UtilsValidator;
 class CompanyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all companies.
      *
      * @return json
      */
     public function index()
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token',
+            ], 401);
+        }
+        elseif($user->role_id != 1)
+        {
+            // Only users with role 1 can display the list
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission',
+            ], 403);
+        }
+
+        // List all companies with heardquarters
+        $companies = Company::with('headquarters')->get();
+
+        // Return the response with the companies list
+        return response()->json([
+            'status' => true,
+            'companies' => $companies
+        ], 200);
     }
 
     /**
