@@ -25,7 +25,7 @@ class CompanyController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -33,7 +33,7 @@ class CompanyController extends Controller
             // Only users with role 1 can display the list
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 403);
         }
 
@@ -63,7 +63,7 @@ class CompanyController extends Controller
             // Error invalid token
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid Token / Expired Token',
+                'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
         elseif($user->role_id != 1)
@@ -71,7 +71,7 @@ class CompanyController extends Controller
             // Only users with role 1 can store
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have permission',
+                'message' => 'User does not have permission'
             ], 403);
         }
 
@@ -136,14 +136,50 @@ class CompanyController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified company.
      *
      * @param  int  $id
      * @return json
      */
     public function show($id)
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+        elseif($user->role_id != 1)
+        {
+            // Only users with role 1 can register
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission'
+            ], 401);
+        }
+
+        // Find the user
+        $company = Company::with('headquarters')->find($id);
+
+        if (!$company)
+        {
+            // Error company does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'Company does not exist'
+            ], 404);
+        }
+
+        // Return company data
+        return response()->json([
+            'status' => true,
+            'company' => $company
+        ], 200);
     }
 
     /**
