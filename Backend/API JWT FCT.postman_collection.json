@@ -127,7 +127,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzc1LCJleHAiOjE2ODQ4NzQ5NzUsIm5iZiI6MTY4NDg3MTM3NSwianRpIjoiSHpQZFMzZzEwZ1B0QUNkVCIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.fTOmJMleLC-WB4G_p-CsX7Q073bOKxp1Tdat1YF_g4U",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
 									"type": "string"
 								}
 							]
@@ -136,7 +136,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"alberto@gmail.com\",  \r\n    \"password\": \"Alberto0$\",\r\n    \"name\": \"Alberto\", \r\n    \"last_name\": \"García Navarro\",\r\n    \"dni\": \"12345678Z\",\r\n    \"mobile\": \"645518926\",\r\n    \"role_id\": 2\r\n}",
+							"raw": "{\r\n    \"email\": \"alberto@gmail.com\",  \r\n    \"password\": \"Alberto0$\",\r\n    \"name\": \"Alberto\", \r\n    \"last_name\": \"García Navarro\",\r\n    \"dni\": \"12345678Z\",\r\n    \"mobile\": \"645518927\",\r\n    \"role_id\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,7 +169,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzQ5LCJleHAiOjE2ODQ4NzQ5NDksIm5iZiI6MTY4NDg3MTM0OSwianRpIjoiZHdBZjVTaUEyZHpuNlpoTyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.6qLzW5Hcl7TQmvXmfmQN_e6wGpQ1VW_-K49CzlL3pL0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
 									"type": "string"
 								}
 							]
@@ -212,7 +212,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzc1LCJleHAiOjE2ODQ4NzQ5NzUsIm5iZiI6MTY4NDg3MTM3NSwianRpIjoiSHpQZFMzZzEwZ1B0QUNkVCIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.fTOmJMleLC-WB4G_p-CsX7Q073bOKxp1Tdat1YF_g4U",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
 									"type": "string"
 								}
 							]
@@ -254,7 +254,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzQ5LCJleHAiOjE2ODQ4NzQ5NDksIm5iZiI6MTY4NDg3MTM0OSwianRpIjoiZHdBZjVTaUEyZHpuNlpoTyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.6qLzW5Hcl7TQmvXmfmQN_e6wGpQ1VW_-K49CzlL3pL0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
 									"type": "string"
 								}
 							]
@@ -291,7 +291,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzQ5LCJleHAiOjE2ODQ4NzQ5NDksIm5iZiI6MTY4NDg3MTM0OSwianRpIjoiZHdBZjVTaUEyZHpuNlpoTyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.6qLzW5Hcl7TQmvXmfmQN_e6wGpQ1VW_-K49CzlL3pL0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI2ODU4LCJleHAiOjE2ODQ5MzA0NTgsIm5iZiI6MTY4NDkyNjg1OCwianRpIjoibkRHSjJFNEhaNWpjdkIwSyIsInN1YiI6IjQiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.zu0gWZpB-H6annYXaCjVJVuw6Hi_BX9MLWIeKFKZgm4",
 									"type": "string"
 								}
 							]
@@ -425,6 +425,197 @@
 							"path": [
 								"api",
 								"roles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Company_Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"NTT\",\r\n    \"cif\": \"A58818501\",    \r\n    \"email\": \"ntt@gmail.com\"  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/companies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Companies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/companies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company_Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/companies/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"companies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company_Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ayesa\",\r\n    \"cif\": \"B58818501\",    \r\n    \"email\": \"ayesa@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/companies/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"companies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company_Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/companies/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"companies",
+								"2"
 							]
 						}
 					},
