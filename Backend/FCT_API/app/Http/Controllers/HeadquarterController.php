@@ -154,7 +154,7 @@ class HeadquarterController extends Controller
 
         if (!$headquarter)
         {
-            // Error user does not exist
+            // Error headquarter does not exist
             return response()->json([
                 'status' => false,
                 'message' => 'Headquarter does not exist'
@@ -228,13 +228,50 @@ class HeadquarterController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified headquarter from storage.
      *
      * @param  int  $id
      * @return json
      */
     public function destroy($id)
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+        elseif($user->role_id != 1)
+        {
+            // Only users with role 1 can destroy
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission'
+            ], 403);
+        }
+
+        // Find the headquarter
+        $headquarter = Headquarter::find($id);
+
+        if (!$headquarter)
+        {
+            // Error headquarter does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'Headquarter does not exist'
+            ], 404);
+        }
+
+        // Delete headquarter
+        $headquarter->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'Headquarter deleted'
+        ], 200); 
     }
 }
