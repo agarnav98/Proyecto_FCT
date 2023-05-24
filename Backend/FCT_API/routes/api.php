@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\HeadquarterController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,5 +43,10 @@ Route::group(['middleware' => ['jwt.verify']], function()
     Route::post('companies', [CompanyController::class, 'store']);
     Route::get('companies/{id}', [CompanyController::class, 'show']);
     Route::put('companies/{id}', [CompanyController::class, 'update']);
-    Route::delete('companies/{id}', [CompanyController::class, 'destroy']);    
+    Route::delete('companies/{id}', [CompanyController::class, 'destroy']);
+    
+    // Headquarter CRUD
+    Route::post('companies/{id}/headquarters', [HeadquarterController::class, 'store']);
+    Route::put('headquarters/{id}', [HeadquarterController::class, 'update']);
+    Route::delete('headquarters/{id}', [HeadquarterController::class, 'destroy']);
 });

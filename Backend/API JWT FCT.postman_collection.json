@@ -443,7 +443,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU3MTAyLCJleHAiOjE2ODQ5NjA3MDIsIm5iZiI6MTY4NDk1NzEwMiwianRpIjoiQTJHNjRqSDBVakRSbHFFWiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.IfiDF3ijBGktKCH79yuUK_7jB5k5V5qoK54DJGoOoaM",
 									"type": "string"
 								}
 							]
@@ -485,7 +485,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU3MTAyLCJleHAiOjE2ODQ5NjA3MDIsIm5iZiI6MTY4NDk1NzEwMiwianRpIjoiQTJHNjRqSDBVakRSbHFFWiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.IfiDF3ijBGktKCH79yuUK_7jB5k5V5qoK54DJGoOoaM",
 									"type": "string"
 								}
 							]
@@ -616,6 +616,132 @@
 								"api",
 								"companies",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Headquarter",
+			"item": [
+				{
+					"name": "Headquarter_Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU3MTAyLCJleHAiOjE2ODQ5NjA3MDIsIm5iZiI6MTY4NDk1NzEwMiwianRpIjoiQTJHNjRqSDBVakRSbHFFWiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.IfiDF3ijBGktKCH79yuUK_7jB5k5V5qoK54DJGoOoaM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sede Sur\", \r\n    \"mobile\": \"951895635\",\r\n    \"address\": \"Av/Ronda de capuchinos\",\r\n    \"town\": \"Sevilla\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/companies/3/headquarters",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"companies",
+								"3",
+								"headquarters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Headquarter_Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU4NDY4LCJleHAiOjE2ODQ5NjIwNjgsIm5iZiI6MTY4NDk1ODQ2OCwianRpIjoiU2xiemlpRVZPM1FUNWpPbCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nyisCKCyjDUlIvo-6ZqXQe0VuLxBc2ojBVqN08OcGl8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sede Norte\", \r\n    \"mobile\": \"951895635\",\r\n    \"address\": \"Av/Ronda de capuchinos\",\r\n    \"town\": \"Málaga\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/headquarters/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"headquarters",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Headquarter_Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU4NDY4LCJleHAiOjE2ODQ5NjIwNjgsIm5iZiI6MTY4NDk1ODQ2OCwianRpIjoiU2xiemlpRVZPM1FUNWpPbCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nyisCKCyjDUlIvo-6ZqXQe0VuLxBc2ojBVqN08OcGl8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/headquarters/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"headquarters",
+								"3"
 							]
 						}
 					},

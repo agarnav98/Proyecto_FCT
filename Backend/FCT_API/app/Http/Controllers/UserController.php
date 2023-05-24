@@ -165,7 +165,6 @@ class UserController extends Controller
             'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
             'role_id' => $request->role_id
-
         ]);
 
         // Return the response with the new user data

@@ -220,7 +220,7 @@ class CompanyController extends Controller
 
         if (!$company)
         {
-            // Error user does not exist
+            // Error company does not exist
             return response()->json([
                 'status' => false,
                 'message' => 'Company does not exist'
