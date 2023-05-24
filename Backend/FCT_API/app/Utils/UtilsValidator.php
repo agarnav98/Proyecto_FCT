@@ -51,8 +51,13 @@ class UtilsValidator
   public static function validatorCIF(string $cif): bool
   {
     $cif = strtoupper($cif);
-    $cifCodes = ["J", "A", "B", "C", "D", "E", "F", "G", "H", "I"];
-    $status = false;
+    $cifCodes = ["J", "A", "B", "C", "D", "E", "F", "G", "H", "I"];  
+      
+    // Check that the last seven digits are a number 
+    if (!ctype_digit(substr($cif,1,7)))
+    {
+      return false;
+    }
 
     // Sum odd numbers
     $cifSum = $cif[2] + $cif[4] + $cif[6];
