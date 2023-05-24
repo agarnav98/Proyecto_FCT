@@ -26,12 +26,12 @@ return new class extends Migration
             $table->date('birth')->nullable();
             $table->text('preferences')->nullable();
             $table->string('cv')->nullable();
-            $table->foreignId('rol_id');
+            $table->foreignId('role_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             // Relations
-            $table->foreign('rol_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

@@ -4,9 +4,8 @@ namespace App\Utils;
 
 class UtilsValidator
 {
-
  /**
-  * Method that validates DNI
+  * Method that validates DNI.
   *
   * @param {string} $dni
   * @return {bool}
@@ -44,7 +43,56 @@ class UtilsValidator
   }
 
  /**
-  * Method that validates Password
+  * Method that validates CIF.
+  *
+  * @param {string} $cif
+  * @return {bool}
+  */
+  public static function validatorCIF(string $cif): bool
+  {
+    $cif = strtoupper($cif);
+    $cifCodes = ["J", "A", "B", "C", "D", "E", "F", "G", "H", "I"];  
+      
+    // Check that the last seven digits are a number 
+    if (!ctype_digit(substr($cif,1,7)))
+    {
+      return false;
+    }
+
+    // Sum odd numbers
+    $cifSum = $cif[2] + $cif[4] + $cif[6];
+    // Multiply even numbers
+    for ($i = 1; $i<8; $i += 2) {
+      $evenNumbers = (string) (2 * $cif[$i]);
+      $evenNumbers = $evenNumbers[0] + ((strlen($evenNumbers) == 2) ? $evenNumbers[1] : 0);
+      // Gets CIF sum
+      $cifSum += $evenNumbers;
+    }
+
+    // Gets CIF control digit
+    $cifControl = (10 - substr ($cifSum, -1)) % 10;
+
+    if (preg_match ('/^[ABCDEFGHJNPQRSUVW]{1}/', $cif)) {
+      if (in_array ($cif[0], array ('A', 'B', 'E', 'H'))) {
+        // Numeric CIF
+        return ($cif[8] == $cifControl);
+      } elseif (in_array ($cif[0], array ('K', 'P', 'Q', 'S'))) {
+        // Letters CIF
+        return ($cif[8] == $cifCodes[$cifControl]);
+      } else {
+        // Alphanumeric CIF
+        if (is_numeric ($cif[8])) {
+          return ($cif[8] == $cifControl);
+        } else {
+          return ($cif[8] == $cifCodes[$cifControl]);
+        }
+      }
+    }
+    return false;
+  } 
+
+ /**
+  * Method that validates Password.
   *
   * From 8 to 16 characters and must contain:
   * At least one digit.
@@ -66,7 +114,7 @@ class UtilsValidator
   }
 
  /**
-  * Method that validates Mobile Number
+  * Method that validates Mobile Number.
   *
   * @param {string} $mobile
   * @return {bool}

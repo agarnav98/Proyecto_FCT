@@ -4,12 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Role extends Model
 {
-    // Table name
-    protected $table = 'roles';
-
-    // 1 Rol has N Users
+    // 1 Role has N Users
     public function users(){
         return $this->hasMany(User::class);
     }
