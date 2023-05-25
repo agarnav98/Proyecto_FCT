@@ -53,7 +53,7 @@ Route::group(['middleware' => ['jwt.verify']], function()
     Route::delete('headquarters/{id}', [HeadquarterController::class, 'destroy']);
 
     // Candidacy CRUD
-    /*Route::get('candidacies', [CandidacyController::class, 'index']);*/
+    Route::get('candidacies', [CandidacyController::class, 'index']);
     Route::post('users/{id}/candidacies', [CandidacyController::class, 'store']);
     /*Route::put('candidacies/{id}', [CandidacyController::class, 'update']);*/
     /*Route::delete('candidacies/{id}', [CandidacyController::class, 'destroy']);*/    
