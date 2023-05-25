@@ -172,13 +172,50 @@ class CandidacyController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified candidacy from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+        elseif($user->role_id != 1)
+        {
+            // Only users with role 1 can destroy
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission'
+            ], 403);
+        }
+
+        // Find the candidacy
+        $candidacy = Candidacy::find($id);
+
+        if (!$candidacy)
+        {
+            // Error headquarter does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'Candidacy does not exist'
+            ], 404);
+        }
+
+        // Delete candidacy
+        $candidacy->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'Candidacy deleted'
+        ], 200); 
     }
 }

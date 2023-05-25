@@ -56,5 +56,5 @@ Route::group(['middleware' => ['jwt.verify']], function()
     Route::get('candidacies', [CandidacyController::class, 'index']);
     Route::post('users/{id}/candidacies', [CandidacyController::class, 'store']);
     /*Route::put('candidacies/{id}', [CandidacyController::class, 'update']);*/
-    /*Route::delete('candidacies/{id}', [CandidacyController::class, 'destroy']);*/    
+    Route::delete('candidacies/{id}', [CandidacyController::class, 'destroy']);    
 });
