@@ -39,7 +39,7 @@ class UserController extends Controller
         }
 
         // List all users
-        $users = User::with('role')->get();
+        $users = User::with('role', 'candidacies')->get();
 
         // Return the response with the user list
         return response()->json([
@@ -204,7 +204,7 @@ class UserController extends Controller
         }
 
         // Find the user
-        $showUser = User::with('role')->find($id);
+        $showUser = User::with('role', 'candidacies')->find($id);
 
         if (!$showUser)
         {
@@ -244,7 +244,7 @@ class UserController extends Controller
         // Return user data
         return response()->json([
             'status' => true,
-            'user' => $user->with('role')->find($user->id)
+            'user' => $user->with('role', 'candidacies')->find($user->id)
         ], 200);
     }
     

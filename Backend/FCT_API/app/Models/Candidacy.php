@@ -18,4 +18,11 @@ class Candidacy extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    // The attributes that are mass assignable.
+    protected $fillable = [
+        'status',
+        'company_id',
+        'user_id'
+    ];
 }

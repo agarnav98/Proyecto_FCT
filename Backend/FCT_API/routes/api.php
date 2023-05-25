@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HeadquarterController;
+use App\Http\Controllers\CandidacyController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,4 +51,10 @@ Route::group(['middleware' => ['jwt.verify']], function()
     Route::post('companies/{id}/headquarters', [HeadquarterController::class, 'store']);
     Route::put('headquarters/{id}', [HeadquarterController::class, 'update']);
     Route::delete('headquarters/{id}', [HeadquarterController::class, 'destroy']);
+
+    // Candidacy CRUD
+    /*Route::get('candidacies', [CandidacyController::class, 'index']);*/
+    Route::post('users/{id}/candidacies', [CandidacyController::class, 'store']);
+    /*Route::put('candidacies/{id}', [CandidacyController::class, 'update']);*/
+    /*Route::delete('candidacies/{id}', [CandidacyController::class, 'destroy']);*/    
 });
