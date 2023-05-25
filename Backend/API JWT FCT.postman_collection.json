@@ -80,7 +80,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzMxLCJleHAiOjE2ODQ4NzQ5MzEsIm5iZiI6MTY4NDg3MTMzMSwianRpIjoicXBVWmJONVBCamQxMmRNdSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5VLo-bVc9C56JF3oQiMgDOoA6AU6jbpst_99kuSQdYI",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDE4NzkxLCJleHAiOjE2ODUwMjIzOTEsIm5iZiI6MTY4NTAxODc5MSwianRpIjoiUWRXT1daRWpOS1JZSmJOSCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Qs999o-eVCKgSgxHC1Dr77YpqP7MfayZHZ8Z5WanLtg",
 									"type": "string"
 								}
 							]
@@ -127,7 +127,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -136,7 +136,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"alberto@gmail.com\",  \r\n    \"password\": \"Alberto0$\",\r\n    \"name\": \"Alberto\", \r\n    \"last_name\": \"García Navarro\",\r\n    \"dni\": \"12345678Z\",\r\n    \"mobile\": \"645518927\",\r\n    \"role_id\": 2\r\n}",
+							"raw": "{\r\n    \"email\": \"alberto@gmail.com\",  \r\n    \"password\": \"Alerto0$\",\r\n    \"name\": \"Alberto\", \r\n    \"last_name\": \"García Navarro\",\r\n    \"dni\": \"12345678Z\",\r\n    \"mobile\": \"645518927\",\r\n    \"role_id\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,7 +169,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -186,7 +186,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/2",
+							"raw": "http://127.0.0.1:8000/api/users/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -198,7 +198,7 @@
 							"path": [
 								"api",
 								"users",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -212,7 +212,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzM4LCJleHAiOjE2ODUwMjY5MzgsIm5iZiI6MTY4NTAyMzMzOCwianRpIjoibG1sdFRvTUsxOEk5RFI4WiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.1k2qryoWPF9uro0Vhe5hCK_N9sT2S4WLBlSNXcoNX9Q",
 									"type": "string"
 								}
 							]
@@ -221,7 +221,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"Alberto0$\",  \r\n    \"mobile\": \"645518926\",\r\n    \"address\": \"C/inventada\",\r\n    \"town\": \"Sevilla\",\r\n    \"birth\": \"1998-11-10\",\r\n    \"preferences\": \"Frontend\"\r\n}",
+							"raw": "{\r\n    \"password\": \"\",  \r\n    \"mobile\": \"645518926\",\r\n    \"address\": \"C/inventada\",\r\n    \"town\": \"Sevilla\",\r\n    \"birth\": \"1998-11-10\",\r\n    \"preferences\": \"Frontend\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -254,7 +254,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -291,7 +291,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI2ODU4LCJleHAiOjE2ODQ5MzA0NTgsIm5iZiI6MTY4NDkyNjg1OCwianRpIjoibkRHSjJFNEhaNWpjdkIwSyIsInN1YiI6IjQiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.zu0gWZpB-H6annYXaCjVJVuw6Hi_BX9MLWIeKFKZgm4",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -333,7 +333,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzQ5LCJleHAiOjE2ODQ4NzQ5NDksIm5iZiI6MTY4NDg3MTM0OSwianRpIjoiZHdBZjVTaUEyZHpuNlpoTyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.6qLzW5Hcl7TQmvXmfmQN_e6wGpQ1VW_-K49CzlL3pL0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -366,7 +366,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcxMzQ5LCJleHAiOjE2ODQ4NzQ5NDksIm5iZiI6MTY4NDg3MTM0OSwianRpIjoiZHdBZjVTaUEyZHpuNlpoTyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.6qLzW5Hcl7TQmvXmfmQN_e6wGpQ1VW_-K49CzlL3pL0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -405,7 +405,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0ODcyMTY1LCJleHAiOjE2ODQ4NzU3NjUsIm5iZiI6MTY4NDg3MjE2NSwianRpIjoiQXhGb1FpS3lFVWJGOGtHMSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.q21wdiH4VEw4VkZVDZoO9qkIKikzsJDoyfICzIkmde0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -443,7 +443,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU3MTAyLCJleHAiOjE2ODQ5NjA3MDIsIm5iZiI6MTY4NDk1NzEwMiwianRpIjoiQTJHNjRqSDBVakRSbHFFWiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.IfiDF3ijBGktKCH79yuUK_7jB5k5V5qoK54DJGoOoaM",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -452,7 +452,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"NTT\",\r\n    \"cif\": \"A58818501\",    \r\n    \"email\": \"ntt@gmail.com\"  \r\n}",
+							"raw": "{\r\n    \"name\": \"NTT\",\r\n    \"cif\": \"S0794867B\",    \r\n    \"email\": \"ntt@gmail.com\"  \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -485,7 +485,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU3MTAyLCJleHAiOjE2ODQ5NjA3MDIsIm5iZiI6MTY4NDk1NzEwMiwianRpIjoiQTJHNjRqSDBVakRSbHFFWiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.IfiDF3ijBGktKCH79yuUK_7jB5k5V5qoK54DJGoOoaM",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMDczLCJleHAiOjE2ODUwMjY2NzMsIm5iZiI6MTY4NTAyMzA3MywianRpIjoic2kxNkR4SnpGSXVpZzRyVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JnK4GwTtp4wiisLIpZlQwvrd5-FUzillZsavY38w6IM",
 									"type": "string"
 								}
 							]
@@ -518,7 +518,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzY1LCJleHAiOjE2ODUwMjY5NjUsIm5iZiI6MTY4NTAyMzM2NSwianRpIjoiNjF3eDhabzFOektpNERQUSIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.SxJtfSAV7KbZUpjBVBbc4xCZdEjWagwLtMFlDOVSqSI",
 									"type": "string"
 								}
 							]
@@ -526,7 +526,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/companies/2",
+							"raw": "http://127.0.0.1:8000/api/companies/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -538,7 +538,7 @@
 							"path": [
 								"api",
 								"companies",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -552,7 +552,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
 									"type": "string"
 								}
 							]
@@ -569,7 +569,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/companies/2",
+							"raw": "http://127.0.0.1:8000/api/companies/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -581,7 +581,7 @@
 							"path": [
 								"api",
 								"companies",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -595,7 +595,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTI5MDQzLCJleHAiOjE2ODQ5MzI2NDMsIm5iZiI6MTY4NDkyOTA0MywianRpIjoiUzdrMngzcFFQTkNTZGx1SSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H6P6m8nwZP4eVpBdz9C5lv5_khx_Ir8561hUXM87sv8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
 									"type": "string"
 								}
 							]
@@ -603,7 +603,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/companies/2",
+							"raw": "http://127.0.0.1:8000/api/companies/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -615,7 +615,7 @@
 							"path": [
 								"api",
 								"companies",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -634,7 +634,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU3MTAyLCJleHAiOjE2ODQ5NjA3MDIsIm5iZiI6MTY4NDk1NzEwMiwianRpIjoiQTJHNjRqSDBVakRSbHFFWiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.IfiDF3ijBGktKCH79yuUK_7jB5k5V5qoK54DJGoOoaM",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
 									"type": "string"
 								}
 							]
@@ -651,7 +651,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/companies/3/headquarters",
+							"raw": "http://127.0.0.1:8000/api/companies/1/headquarters",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -663,7 +663,7 @@
 							"path": [
 								"api",
 								"companies",
-								"3",
+								"1",
 								"headquarters"
 							]
 						}
@@ -678,7 +678,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU4NDY4LCJleHAiOjE2ODQ5NjIwNjgsIm5iZiI6MTY4NDk1ODQ2OCwianRpIjoiU2xiemlpRVZPM1FUNWpPbCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nyisCKCyjDUlIvo-6ZqXQe0VuLxBc2ojBVqN08OcGl8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
 									"type": "string"
 								}
 							]
@@ -695,7 +695,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/headquarters/1",
+							"raw": "http://127.0.0.1:8000/api/headquarters/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -707,7 +707,7 @@
 							"path": [
 								"api",
 								"headquarters",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -721,7 +721,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTU4NDY4LCJleHAiOjE2ODQ5NjIwNjgsIm5iZiI6MTY4NDk1ODQ2OCwianRpIjoiU2xiemlpRVZPM1FUNWpPbCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nyisCKCyjDUlIvo-6ZqXQe0VuLxBc2ojBVqN08OcGl8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg0OTYzODgwLCJleHAiOjE2ODQ5Njc0ODAsIm5iZiI6MTY4NDk2Mzg4MCwianRpIjoiQVJvOWIxM3FXcE1tSGRZViIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.qNXDjqVdPN1W4KAQpzWwiTJyfrpQTBKhB00hoIljXok",
 									"type": "string"
 								}
 							]
@@ -729,7 +729,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/headquarters/3",
+							"raw": "http://127.0.0.1:8000/api/headquarters/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -741,7 +741,166 @@
 							"path": [
 								"api",
 								"headquarters",
-								"3"
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidacy",
+			"item": [
+				{
+					"name": "Candidacy_Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"\",\r\n    \"company_id\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/users/3/candidacies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"3",
+								"candidacies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidacies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidacies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidacies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidacy_Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidacies/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidacies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidacy_Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg1MDIzMzkyLCJleHAiOjE2ODUwMjY5OTIsIm5iZiI6MTY4NTAyMzM5MiwianRpIjoiODdaczBsS241MDFHQ3Q3ZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Oja_oLsISo8RqCUBB-7Krpsa83ybdFcvp9mfBLKGINE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/candidacies/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"candidacies",
+								"2"
 							]
 						}
 					},

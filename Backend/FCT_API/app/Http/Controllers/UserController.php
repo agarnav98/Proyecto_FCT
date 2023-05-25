@@ -39,7 +39,7 @@ class UserController extends Controller
         }
 
         // List all users
-        $users = User::with('role')->get();
+        $users = User::with('role', 'candidacies')->get();
 
         // Return the response with the user list
         return response()->json([
@@ -204,7 +204,7 @@ class UserController extends Controller
         }
 
         // Find the user
-        $showUser = User::with('role')->find($id);
+        $showUser = User::with('role', 'candidacies')->find($id);
 
         if (!$showUser)
         {
@@ -244,7 +244,7 @@ class UserController extends Controller
         // Return user data
         return response()->json([
             'status' => true,
-            'user' => $user->with('role')->find($user->id)
+            'user' => $user->with('role', 'candidacies')->find($user->id)
         ], 200);
     }
     
@@ -336,11 +336,11 @@ class UserController extends Controller
             'last_name' => 'required|string|max:35',
             'dni' => $dniRule,
             'mobile' => $mobileRule,
-            'address'=> 'string|max:255',
-            'town' => 'string|max:35',
-            'birth' => 'date',
-            'preferences' => 'string',
-            'cv' => 'string|max:255',
+            'address'=> 'string|max:255|nullable',
+            'town' => 'string|max:35|nullable',
+            'birth' => 'date|nullable',
+            'preferences' => 'string|nullable',
+            'cv' => 'string|max:255|nullable',
             'role_id' => 'required|in:1,2'
         ];
 
@@ -372,7 +372,6 @@ class UserController extends Controller
             'role_id.required' => 'Rol requerido.',
             'role_id' => 'Rol inválido.'
         ];
-
 
         // Data request validation
         $validator = Validator::make($data, $rules, $messages);
@@ -490,11 +489,11 @@ class UserController extends Controller
         $rules = [
             'password' => $passwordRule,
             'mobile' => $mobileRule,
-            'address'=> 'string|max:255',
-            'town' => 'string|max:35',
-            'birth' => 'date',
-            'preferences' => 'string',
-            'cv' => 'string|max:255'
+            'address'=> 'string|max:255|nullable',
+            'town' => 'string|max:35|nullable',
+            'birth' => 'date|nullable',
+            'preferences' => 'string|nullable',
+            'cv' => 'string|max:255|nullable'
         ];
 
         // Custom messages for validation
