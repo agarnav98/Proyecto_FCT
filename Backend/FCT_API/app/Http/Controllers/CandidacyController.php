@@ -89,6 +89,18 @@ class CandidacyController extends Controller
             ], 404);
         }
 
+        // Check if the user has an accepted candidacy
+        $checkStatus = Candidacy::where('user_id', $id)->where('status', true)->exists();
+
+        if ($checkStatus)
+        {
+            // Error user has an accepted candidacy
+            return response()->json([
+                'status' => false,
+                'message' => 'User has an accepted candidacy'
+            ], 400);           
+        }        
+
         // Request only past data
         $data = $request->only(
             'status',
@@ -160,7 +172,7 @@ class CandidacyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified candidacy in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -168,7 +180,88 @@ class CandidacyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+        elseif($user->role_id != 1)
+        {
+            // Only users with role 1 can update
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission'
+            ], 403);
+        }
+
+        // Find the candidacy
+        $candidacy = Candidacy::find($id);
+
+        if (!$candidacy)
+        {
+            // Error headquarter does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'Candidacy does not exist'
+            ], 404);
+        }
+
+        // Request only past data
+        $data = $request->only(
+            'status'
+        );
+
+        // Rules to validate the data
+        $rules = [
+            'status' => 'boolean'
+        ];
+
+        // Custom messages for validation
+        $messages = [
+            'status' => 'Estado solo admite los valores: Aceptado, En espera o Denegado.'
+        ];
+
+        // Data request validation
+        $validator = Validator::make($data, $rules, $messages);
+
+        // Returning error if validation fails
+        if ($validator->fails())
+        {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->messages()
+            ], 400);
+        }
+
+        // Check if the user has an accepted candidacy
+        $checkStatus = Candidacy::where('user_id', $candidacy->user_id)->where('status', true)->exists();
+
+        if ($checkStatus && $request->status)
+        {
+            // Error user has an accepted candidacy
+            return response()->json([
+                'status' => false,
+                'message' => 'User has an accepted candidacy'
+            ], 400);           
+        }   
+
+        // Update candidacy if validation is successful
+        $candidacy->update([
+            'status' => $request->status
+        ]);
+
+        // Return the response with the new headquarter data
+        return response()->json([
+            'status' => true,
+            'message' => 'Candidacy successfully updated',
+            'candidacy' => $candidacy
+        ], 200);
     }
 
     /**
