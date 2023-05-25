@@ -236,7 +236,7 @@ class CompanyController extends Controller
 
         // Update fields with unique rules
         $cifRule = 'required|string|size:9|unique:companies';
-        if ($request->cif == $company->cif)
+        if (strtoupper($request->cif) == strtoupper($company->cif))
         {
             $cifRule = 'required|string|size:9';
         }

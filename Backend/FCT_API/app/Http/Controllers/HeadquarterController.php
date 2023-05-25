@@ -83,7 +83,6 @@ class HeadquarterController extends Controller
             'town.max' => 'La localidad no debe superar los :max caracteres.'
         ];
 
-
         // Data request validation
         $validator = Validator::make($data, $rules, $messages);
 

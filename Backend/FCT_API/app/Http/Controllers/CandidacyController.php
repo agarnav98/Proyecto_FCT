@@ -14,7 +14,7 @@ class CandidacyController extends Controller
     /**
      * Display a listing of all candidacies.
      *
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function index()
     {
@@ -109,7 +109,7 @@ class CandidacyController extends Controller
 
         // Rules to validate the data
         $rules = [
-            'status' => 'boolean',
+            'status' => 'boolean|nullable',
             'company_id' => 'required|integer'
         ];
 
@@ -176,7 +176,7 @@ class CandidacyController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function update(Request $request, $id)
     {
@@ -219,7 +219,7 @@ class CandidacyController extends Controller
 
         // Rules to validate the data
         $rules = [
-            'status' => 'boolean'
+            'status' => 'boolean|nullable'
         ];
 
         // Custom messages for validation
@@ -268,7 +268,7 @@ class CandidacyController extends Controller
      * Remove the specified candidacy from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function destroy($id)
     {
