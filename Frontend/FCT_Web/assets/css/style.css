@@ -1,0 +1,67 @@
+.card-text{
+    text-align: justify;
+}
+
+#movies {
+    max-width: 1000px; 
+    margin: 10px auto;
+}
+
+#favIcon{
+    float: right;
+    font-size: 1.8rem;
+    color: #30db95;
+    cursor: pointer;
+}
+
+.col-md-4{
+    text-align: center;
+}
+
+#genres{
+    padding-top: 5px;
+    color: #30db95;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.card-special-text{
+    margin-top: 20px;
+}
+
+.card-special-text span{
+    color: #30db95;
+    font-family:'Courier New', Courier, monospace;
+}
+
+#search{
+    margin: 10px 0; 
+    max-width: 540px;
+}
+
+#search::placeholder{
+    color: rgb(194, 194, 194);
+}
+
+#list-group{
+    width: 100%; 
+    z-index: 1;
+    max-width: 540px;
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.list-group-item, .nav-link{
+    background: #212529;
+    color: white;
+}
+
+.list-group-item:hover, .nav-link:hover{
+    background: #30db95;
+    color: black;
+}
+
+#noFav{
+    color: #30db95;
+    margin: 10px auto;
+    max-width: 500px;
+}
