@@ -1,67 +1,25 @@
-.card-text{
-    text-align: justify;
+/* Gradient blue color */
+.gradient-custom-2 {
+  border-top-right-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+  border-top-left-radius: 0.4rem;
+  border-bottom-left-radius: 0.4rem;
+  /* fallback for old browsers */
+  background: #3d99be;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    #3ab5b0 0%,
+    #3d99be 31%,
+    #56317a 100%
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
 }
 
-#movies {
-    max-width: 1000px; 
-    margin: 10px auto;
+#btn-login:hover {
+    background: linear-gradient(to right, #349e9b 0%, #2f7996 31%, #392152 100%);
 }
-
-#favIcon{
-    float: right;
-    font-size: 1.8rem;
-    color: #30db95;
-    cursor: pointer;
-}
-
-.col-md-4{
-    text-align: center;
-}
-
-#genres{
-    padding-top: 5px;
-    color: #30db95;
-    font-family:'Courier New', Courier, monospace;
-}
-
-.card-special-text{
-    margin-top: 20px;
-}
-
-.card-special-text span{
-    color: #30db95;
-    font-family:'Courier New', Courier, monospace;
-}
-
-#search{
-    margin: 10px 0; 
-    max-width: 540px;
-}
-
-#search::placeholder{
-    color: rgb(194, 194, 194);
-}
-
-#list-group{
-    width: 100%; 
-    z-index: 1;
-    max-width: 540px;
-    opacity: 0.9;
-    cursor: pointer;
-}
-
-.list-group-item, .nav-link{
-    background: #212529;
-    color: white;
-}
-
-.list-group-item:hover, .nav-link:hover{
-    background: #30db95;
-    color: black;
-}
-
-#noFav{
-    color: #30db95;
-    margin: 10px auto;
-    max-width: 500px;
-}
+  
