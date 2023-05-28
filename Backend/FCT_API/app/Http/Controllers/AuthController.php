@@ -25,7 +25,7 @@ class AuthController extends Controller
         // Rules to validate the data
         $rules = [
             'email' => 'required|email',
-            'password' => 'required|string|min:8|max:16'
+            'password' => 'required|string|between:8,16'
         ];
 
         // Custom messages for validation
@@ -63,7 +63,7 @@ class AuthController extends Controller
                 // Incorrect credentials
                 return response()->json([
                     'status' => false,
-                    'message' => 'Las credenciales son incorrectas'
+                    'message' => ['login' => ['Las credenciales son incorrectas.']]
                 ], 401);
             }
         } 

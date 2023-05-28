@@ -90,11 +90,11 @@ class UserController extends Controller
         // Rules to validate the data
         $rules = [
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:8|max:16',
+            'password' => 'required|string|between:8,16',
             'name' => 'required|string|max:35',
             'last_name' => 'required|string|max:35',
             'dni' => 'required|string|size:9|unique:users',
-            'mobile' => 'required|string|min:9|max:15|unique:users',
+            'mobile' => 'required|string|between:9,15|unique:users',
             'role_id' => 'required|in:1,2'
         ];
 
@@ -316,13 +316,13 @@ class UserController extends Controller
         {
             $dniRule = 'required|string|size:9';
         }
-        $mobileRule = 'required|string|min:9|max:15|unique:users';
+        $mobileRule = 'required|string|between:9,15|unique:users';
         if ($request->mobile == $updateUser->mobile)
         {
-            $mobileRule = 'required|string|min:9|max:15';
+            $mobileRule = 'required|string|between:9,15';
         }
         // Update password only if a new one is received
-        $passwordRule = 'string|min:8|max:16';
+        $passwordRule = 'string|between:8,16';
         if ($request->password == null)
         {
             $passwordRule = '';
@@ -475,12 +475,12 @@ class UserController extends Controller
         );
 
         // Update fields with unique rules
-        $mobileRule = 'required|string|min:9|max:15|unique:users';
+        $mobileRule = 'required|string|between:9,15|unique:users';
         if ($request->mobile == $user->mobile){
-            $mobileRule = 'required|string|min:9|max:15';
+            $mobileRule = 'required|string|between:9,15';
         }
         // Update password only if a new one is received
-        $passwordRule = 'string|min:8|max:16';
+        $passwordRule = 'string|between:8,16';
         if ($request->password == null){
             $passwordRule = '';
         }
