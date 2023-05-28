@@ -102,8 +102,8 @@ class UserController extends Controller
         $messages = [
             'email.required' => 'Email requerido.',
             'email.unique' => 'El email ya ha sido registrado',
-            'email' => 'Email inválido',
-            'password.required' => 'Contraseña requerida',
+            'email' => 'Email inválido.',
+            'password.required' => 'Contraseña requerida.',
             'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
             'name.required' => 'Nombre requerido.',
             'name.string' => 'El nombre debe ser una cadena de texto.',

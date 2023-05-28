@@ -20,12 +20,23 @@ class AuthController extends Controller
     {
         // Request only the email and password
         $credentials = $request->only('email', 'password');
-        
-        // Credentials validation
-        $validator = Validator::make($credentials, [
+
+        // Rules to validate the data
+        $rules = [
             'email' => 'required|email',
             'password' => 'required|string|min:8|max:16'
-        ]);
+        ];
+
+        // Custom messages for validation
+        $messages = [
+            'email.required' => 'Email requerido.',
+            'email' => 'Email inválido.',
+            'password.required' => 'Contraseña requerida.',
+            'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
+        ];
+
+        // Data request validation
+        $validator = Validator::make($data, $rules, $messages);
 
         // Returning error if validation fails
         if ($validator->fails())
@@ -35,7 +46,14 @@ class AuthController extends Controller
                 'message' => $validator->messages()
             ], 400);
         }
-
+        // Password Validation
+        if (!UtilsValidator::validatorPassword($request->password)){
+            return response()->json([
+                'status' => false,
+                'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
+            ], 400);            
+        }
+        
         // Try to login
         try 
         {
@@ -44,7 +62,7 @@ class AuthController extends Controller
                 // Incorrect credentials
                 return response()->json([
                     'status' => false,
-                    'message' => 'Login failed: incorrect credentials'
+                    'message' => 'Las credenciales son incorrectas'
                 ], 401);
             }
         } 
