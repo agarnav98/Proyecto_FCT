@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
+use App\Utils\UtilsValidator;
 
 class AuthController extends Controller
 {
@@ -36,7 +37,7 @@ class AuthController extends Controller
         ];
 
         // Data request validation
-        $validator = Validator::make($data, $rules, $messages);
+        $validator = Validator::make($credentials, $rules, $messages);
 
         // Returning error if validation fails
         if ($validator->fails())
@@ -53,7 +54,7 @@ class AuthController extends Controller
                 'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
             ], 400);            
         }
-        
+
         // Try to login
         try 
         {
