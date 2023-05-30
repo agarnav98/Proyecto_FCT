@@ -60,3 +60,32 @@ function getRole() {
       return reject(error)
     })))
 }
+
+/**
+ * Logout user and redirect to index
+ *
+ */
+function logout() {
+  if (confirm("¿Quiere cerrar la sesión?")) {
+    // API get user data request
+    fetch(`${API_BASE_URL}logout`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+    })
+      // Get JSON response and remove item
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+        localStorage.removeItem("token");
+        window.location.href = LOGIN_PAGE;
+      })
+      // Show API request error
+      .catch((error) => {
+        console.log('Error:', error);
+      });
+  }
+}
