@@ -86,10 +86,9 @@ class AuthController extends Controller
     /**
      * Logout user function to destroy token and disconnect user.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return json
      */ 
-    public function logout(Request $request)
+    public function logout()
     {
         try 
         {
