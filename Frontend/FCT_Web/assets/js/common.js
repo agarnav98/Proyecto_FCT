@@ -27,6 +27,24 @@ const removeInputError = (elementName) => {
 };
 
 /**
+ * Loading animation function
+ */
+function loading() {
+  setTimeout(function() {
+    document.getElementById('loading').style.display = 'none';
+  }, 2000);
+}
+
+/**
+ * Short loading animation function
+ */
+function shortLoading() {
+  setTimeout(function() {
+    document.getElementById('loading').style.display = 'none';
+  }, 500);
+}
+
+/**
  * Get user role
  *
  * @return {Promise} roleId

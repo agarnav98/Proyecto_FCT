@@ -23,7 +23,7 @@
     background: linear-gradient(to right, #349e9b 0%, #2f7996 31%, #392152 100%);
 }
 
-/** Sidebar CSS*/
+/* Sidebar CSS*/
 #offcanvasHeader,
 #navbar{
   background-color:#13181d;
@@ -77,4 +77,52 @@
 .btn-toggle-nav a:focus {
   background-color: #164e87;
   color: white;
+}
+
+/* Loading animation */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #13181d;
+  z-index: 99999;
+}
+
+.lds-dual-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  margin-top: -32px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #164e87;
+  border-color: #164e87 transparent #164e87 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+table td,
+table th {
+  white-space: nowrap;
 }
