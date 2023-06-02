@@ -123,7 +123,7 @@ class CompanyController extends Controller
 
         // Create a new company if validation is successful
         $company = Company::create([
-            'name' => $request->name, 
+            'name' => ucfirst($request->name), 
             'cif' => strtoupper($request->cif),
             'email' => $request->email
         ]);
@@ -281,7 +281,7 @@ class CompanyController extends Controller
 
         // Update company if validation is successful
         $company->update([
-            'name' => $request->name, 
+            'name' => ucfirst($request->name), 
             'cif' => strtoupper($request->cif),
             'email' => $request->email
         ]);

@@ -160,8 +160,8 @@ class UserController extends Controller
             'email' => $request->email,
             // Encrypt password for security
             'password' => bcrypt($request->password),
-            'name' => $request->name,
-            'last_name' => $request->last_name,
+            'name' => ucfirst($request->name),
+            'last_name' => ucfirst($request->last_name),
             'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
             'role_id' => $request->role_id
@@ -414,14 +414,14 @@ class UserController extends Controller
         // Update user if validation is successful
         $updateUser->update([
             'email' => $request->email,
-            'name' => $request->name,
-            'last_name' => $request->last_name,
+            'name' => ucfirst($request->name),
+            'last_name' => ucfirst($request->last_name),
             'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
-            'address' => $request->address, 
-            'town' => $request->town,
+            'address' => ucfirst($request->address), 
+            'town' => ucfirst($request->town),
             'birth' => $request->birth,
-            'preferences' => $request->preferences,
+            'preferences' => ucfirst($request->preferences),
             'cv' => $request->cv,
             'role_id' => $request->role_id
         ]);
@@ -615,7 +615,7 @@ class UserController extends Controller
             // Error user has associated candidacies
             return response()->json([
                 'status' => false,
-                'message' => 'User has associated candidacies'
+                'message' => 'Error: El usuario tiene candidaturas asociadas.'
             ], 409);       
         }
         else 
@@ -624,7 +624,7 @@ class UserController extends Controller
             $destroyUser->delete();
             return response()->json([
                 'status' => true,
-                'message' => 'User deleted'
+                'message' => 'Usuario eliminado.'
             ], 200); 
         }
     }

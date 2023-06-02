@@ -104,10 +104,10 @@ class HeadquarterController extends Controller
 
         // Create a new headquarter if validation is successful
         $headquarter = Headquarter::create([
-            'name' => $request->name,
+            'name' => ucfirst($request->name),
             'mobile' => $request->mobile,
-            'address' => $request->address,
-            'town' => $request->town,
+            'address' => ucfirst($request->address),
+            'town' => ucfirst($request->town),
             'company_id' => $id
         ]);
 
@@ -212,10 +212,10 @@ class HeadquarterController extends Controller
 
         // Update headquarter if validation is successful
         $headquarter->update([
-            'name' => $request->name,
+            'name' => ucfirst($request->name),
             'mobile' => $request->mobile,
-            'address' => $request->address,
-            'town' => $request->town
+            'address' => ucfirst($request->address),
+            'town' => ucfirst($request->town)
         ]);
 
         // Return the response with the new headquarter data
