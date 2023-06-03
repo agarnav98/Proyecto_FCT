@@ -126,3 +126,11 @@ table td,
 table th {
   white-space: nowrap;
 }
+
+a:hover{
+  cursor: pointer;
+}
+
+#btn-add {
+  float: left;
+}

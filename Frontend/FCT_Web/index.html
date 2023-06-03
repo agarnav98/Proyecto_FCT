@@ -13,12 +13,6 @@
   <!-- JavaScript integrity -->
   <script src="assets/js/common.js"></script>
   <script src="assets/js/login.js"></script>
-  <script type="text/javascript">
-    // Prevent browser from going back
-    function preventBack(){window.history.forward()};
-    setTimeout("preventBack()", 0);
-    window.onunload=function(){null;}
-</script>
   <!-- Web Icon -->
   <link rel="shortcut icon" href="assets/img/favicon.ico">
   <!-- Page Title -->
@@ -32,7 +26,7 @@
 	background-attachment: fixed;
 	background-size: cover; 
 	background-color: #eee;"
-  onload="shortLoading()">
+  onload="removeLoading()">
     <div id="loading">
       <div class="lds-dual-ring"></div>
     </div>

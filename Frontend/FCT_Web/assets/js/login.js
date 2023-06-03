@@ -1,10 +1,10 @@
 // If it is a valid token, it redirects to the corresponding page
 getRole().then(role_id => {
     if (role_id == 1) {
-        window.location.href = DOCENTE_PAGE;
+        window.location.replace(DOCENTE_PAGE);
     }
     else if (role_id == 2) {
-        window.location.href = ALUMNO_PAGE;
+        window.location.replace(ALUMNO_PAGE);
     }
 });
 
@@ -54,7 +54,7 @@ function login(event) {
                 // Redirects to the corresponding page
                 getRole().then(role_id => {
                     if (role_id == 1) {
-                        window.location.href = DOCENTE_PAGE;
+                        window.location.replace(DOCENTE_PAGE);
                     }
                     else if (role_id == 2) {
                         window.location.href = ALUMNO_PAGE;
