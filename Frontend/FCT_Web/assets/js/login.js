@@ -90,4 +90,6 @@ function login(event) {
 // When loading the html, the script will be executed
 window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("formLogin").addEventListener("submit", login);
+    // Finally, removes loading animation
+    removeLoading();
 });

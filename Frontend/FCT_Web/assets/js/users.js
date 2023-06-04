@@ -51,16 +51,81 @@ window.addEventListener("DOMContentLoaded", () => {
     users().then((users) => {
         // Creates user table
         new DataTable("#users", {
-            dom: '<"btn-add">frtip',
-            fnInitComplete: function(){
-               $('div.btn-add').html('<a type="button" id="btn-add" class="btn btn-outline-dark mb-1" href="newUser.html">Añadir Usuario</a>');
-            },
+            dom: 'Bfrtip',
+            // Table buttons
+            buttons: [
+                {
+                    text: 'Añadir usuario',
+                    action: function () {
+                        window.location.href = NEW_USER_PAGE;
+                    },
+                },
+                {
+                    extend: 'collection',
+                    text: 'Filtrar rol',
+                    buttons: [
+                        {
+                            text: 'Docente',
+                            action: function (e, dt) {
+                                dt.columns(3).search('Docente').draw();
+                                dt.columns(11).search('').draw();
+                            }
+                        },
+                        {
+                            text: 'Alumno',
+                            action: function (e, dt) {
+                                dt.columns(3).search('Alumno').draw();
+                                dt.columns(11).search('').draw();
+                            }
+                        },
+                    ]
+                },
+                {
+                    extend: 'collection',
+                    text: 'Filtrar candidatura',
+                    buttons: [
+                        {
+                            text: ACCEPTED_CANDIDACIES,
+                            action: function (e, dt) {
+                                dt.columns(11).search('Aceptado').draw();
+                                dt.columns(3).search('').draw();
+                            }
+                        },
+                        {
+                            text: PENDING_CANDIDACIES,
+                            action: function (e, dt) {
+                                dt.columns(11).search('En espera').draw();
+                                dt.columns(3).search('').draw();
+                            }
+                        },
+                        {
+                            text: DENIED_CANDIDACIES,
+                            action: function (e, dt) {
+                                dt.columns(11).search('Denegado').draw();
+                                dt.columns(3).search('').draw();
+                            }
+                        },
+                    ]
+                },
+                {
+                    text: 'Limpiar filtros',
+                    action: function (e, dt) {
+                        dt.columns().search('').draw();
+                    },
+                },
+                {
+                    text: 'Recargar lista',
+                    action: function () {
+                        window.location.reload();
+                    },
+                },
+            ],
             data: users,
             columns: [
                 { title: "Nombre", data: "name" },
                 { title: "Apellidos", data: "last_name" },
                 { title: "DNI", data: "dni" },
-                { title: "Rol", data: "role.role" },
+                { title: "Rol", data: "role.role", name: "role" },
                 { title: "Correo electrónico", data: "email" },
                 { title: "Teléfono", data: "mobile" },
                 { title: "Dirección", data: "address" },
@@ -97,10 +162,10 @@ window.addEventListener("DOMContentLoaded", () => {
                             if (statusCandidacies.includes(1)) {
                                 return ACCEPTED_CANDIDACIES;
                             }
-                            else if (statusCandidacies.includes(null)){
+                            else if (statusCandidacies.includes(null)) {
                                 return PENDING_CANDIDACIES;
                             }
-                            else{
+                            else {
                                 return DENIED_CANDIDACIES;
                             }
                         }
@@ -111,7 +176,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     data: "id",
                     // Show edit icon and delete icon
                     render: (data) => {
-                        return `<a href="${USER_SHOW}?id=${data}" class="link rounded mx-2">${EDIT_ICON}</a>
+                        return `<a href="${USER_SHOW_PAGE}?id=${data}" class="link rounded mx-2">${EDIT_ICON}</a>
                         <a class="link rounded" onclick="deleteUser(${data})">${DELETE_ICON}</a>`;
                     },
                 },
@@ -132,6 +197,12 @@ window.addEventListener("DOMContentLoaded", () => {
                     targets: 9,
                     searchable: false,
                 },
+                // Responsive columns priority
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: 1 },
+                { responsivePriority: 3, targets: 12 },
+                { responsivePriority: 4, targets: 11 },
+                { responsivePriority: 10001, targets: 9 }
             ],
             // Table language
             language: {

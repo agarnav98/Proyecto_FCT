@@ -3,7 +3,8 @@ const API_BASE_URL = "http://127.0.0.1:8000/api/";
 const LOGIN_PAGE = "index.html"
 const DOCENTE_PAGE = "users.html";
 const ALUMNO_PAGE = "alumno.html";
-const USER_SHOW = "user.html";
+const USER_SHOW_PAGE = "updateUser.html";
+const NEW_USER_PAGE = "newUser.html"
 
 // SVG Icons
 const EMPTY_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">

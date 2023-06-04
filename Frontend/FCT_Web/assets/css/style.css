@@ -130,7 +130,3 @@ table th {
 a:hover{
   cursor: pointer;
 }
-
-#btn-add {
-  float: left;
-}
