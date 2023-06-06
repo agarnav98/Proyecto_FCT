@@ -615,7 +615,7 @@ class UserController extends Controller
             // Error user has associated candidacies
             return response()->json([
                 'status' => false,
-                'message' => 'Error: El usuario tiene candidaturas asociadas.'
+                'message' => 'No se puede eliminar un usuario con candidaturas asociadas.'
             ], 409);       
         }
         else 
