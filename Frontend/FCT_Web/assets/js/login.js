@@ -6,6 +6,10 @@ getRole().then(role_id => {
     else if (role_id == 2) {
         window.location.replace(ALUMNO_PAGE);
     }
+    else if (role_id == "Token has expired"){
+        alert("La sesión ha caducado.");
+        localStorage.removeItem("token");
+    }
 });
 
 /**
@@ -19,9 +23,9 @@ function login(event) {
     // Form elements
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-    const errorEmail = document.getElementById("errorEmail");
-    const errorPassword = document.getElementById("errorPassword");
-    const errorLogin = document.getElementById("errorLogin");
+    const errorEmail = document.getElementById("error-email");
+    const errorPassword = document.getElementById("error-password");
+    const errorLogin = document.getElementById("error-login");
     const btnLogin = document.getElementById("btn-login");
 
     // Reset form errors
@@ -62,17 +66,17 @@ function login(event) {
                 });
             } else {
                 // Show validation messages
-                removeAllChildNodes("errorEmail");
+                removeAllChildNodes("error-email");
                 if (data.message.email) {
                     email.className += " is-invalid";
                     errorEmail.appendChild(document.createTextNode(data.message.email[0]));
                 }
-                removeAllChildNodes("errorPassword");
+                removeAllChildNodes("error-password");
                 if (data.message.password) {
                     password.className += " is-invalid";
                     errorPassword.appendChild(document.createTextNode(data.message.password[0]));
                 }
-                removeAllChildNodes("errorLogin");
+                removeAllChildNodes("error-login");
                 if (data.message.login) {
                     errorLogin.appendChild(document.createTextNode(data.message.login[0]));
                 }
@@ -89,7 +93,7 @@ function login(event) {
 
 // When loading the html, the script will be executed
 window.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("formLogin").addEventListener("submit", login);
+    document.getElementById("form-login").addEventListener("submit", login);
     // Finally, removes loading animation
     removeLoading();
 });

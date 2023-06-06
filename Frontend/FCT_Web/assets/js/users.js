@@ -5,12 +5,6 @@ getRole().then((role_id) => {
     }
 });
 
-// Candidacies status icons
-const EMPTY_CANDIDACIES = `<span class="with-icon--before me-1">${EMPTY_ICON}</span>Sin candidaturas`;
-const ACCEPTED_CANDIDACIES = `<span class="with-icon--before me-1">${ACCEPTED_ICON}</span>Aceptado`;
-const PENDING_CANDIDACIES = `<span class="with-icon--before me-1">${PENDING_ICON}</span>En espera`;
-const DENIED_CANDIDACIES = `<span class="with-icon--before me-1">${DENIED_ICON}</span>Denegado`;
-
 /**
  * Get users list
  *
@@ -35,7 +29,7 @@ function users() {
                     return resolve(data.users);
                 } else {
                     // Show error message
-                    console.log("Error:", error);
+                    console.log("Error:", data.message);
                     return resolve(null);
                 }
             })
@@ -128,8 +122,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 { title: "Rol", data: "role.role", name: "role" },
                 { title: "Correo electrónico", data: "email" },
                 { title: "Teléfono", data: "mobile" },
-                { title: "Dirección", data: "address" },
-                { title: "Localidad", data: "town" },
+                { title: "Dirección", data: "address", render: (data) => { if (data == "") { return EMPTY_ICON } else { return data } } },
+                { title: "Localidad", data: "town", render: (data) => { if (data == "") { return EMPTY_ICON } else { return data } } },
                 {
                     title: "Fecha nacimiento",
                     data: "birth",
@@ -143,8 +137,8 @@ window.addEventListener("DOMContentLoaded", () => {
                         }
                     }
                 },
-                { title: "Preferencias", data: "preferences" },
-                { title: "CV", data: "cv" },
+                { title: "Preferencias", data: "preferences", render: (data) => { if (data == "") { return EMPTY_ICON } else { return data } } },
+                { title: "CV", data: "cv"},
                 {
                     title: "Estado candidaturas",
                     data: "candidacies",
@@ -156,9 +150,9 @@ window.addEventListener("DOMContentLoaded", () => {
                         }
                         else {
                             // Checks all candidacies status
-                            for (let status of data) {
+                            Array.from(data).forEach(status => {
                                 statusCandidacies.push(status.status);
-                            }
+                            });
                             if (statusCandidacies.includes(1)) {
                                 return ACCEPTED_CANDIDACIES;
                             }
@@ -177,7 +171,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     // Show edit icon and delete icon
                     render: (data) => {
                         return `<a href="${USER_SHOW_PAGE}?id=${data}" class="link rounded mx-2">${EDIT_ICON}</a>
-                        <a class="link rounded" onclick="deleteUser(${data})">${DELETE_ICON}</a>`;
+                        <a class="link rounded" onclick="deleteUser(${data}, ${true})">${DELETE_ICON}</a>`;
                     },
                 },
             ],
@@ -194,7 +188,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 },
                 {
                     // Columns we don't want to be searchable
-                    targets: 9,
+                    targets: 12,
                     searchable: false,
                 },
                 // Responsive columns priority

@@ -12,7 +12,7 @@ const EMPTY_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns
 </svg>`;
 const EDIT_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">
   <path d="M14.846 1.403l3.752 3.753.625-.626A2.653 2.653 0 0015.471.778l-.625.625zm2.029 5.472l-3.752-3.753L1.218 15.028 0 19.998l4.97-1.217L16.875 6.875z" fill="#164e87"/>
-</svg>`;  
+</svg>`;
 const DELETE_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">
   <path fill-rule="evenodd" d="M14 4h3a1 1 0 011 1v1H2V5a1 1 0 011-1h3V1.5A1.5 1.5 0 017.5 0h5A1.5 1.5 0 0114 1.5V4zM8 2v2h4V2H8zM3 8h14v10.5a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 013 18.5V8zm4 3H5v6h2v-6zm4 0H9v6h2v-6zm2 0h2v6h-2v-6z" fill="#a2182f"/>
 </svg>`;
@@ -25,6 +25,12 @@ const PENDING_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xml
 const DENIED_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">
   <path d="M0 10C0 4.486 4.486 0 10 0s10 4.486 10 10-4.486 10-10 10S0 15.514 0 10zm7.707-3.707a1 1 0 00-1.414 1.414L8.586 10l-2.293 2.293a1 1 0 101.414 1.414L10 11.414l2.293 2.293a1 1 0 001.414-1.414L11.414 10l2.293-2.293a1 1 0 00-1.414-1.414L10 8.586 7.707 6.293z" fill="#a3190f"/>
 </svg>`;
+
+// Candidacies status icons
+const EMPTY_CANDIDACIES = `<span class="with-icon--before me-1">${EMPTY_ICON}</span>Sin candidaturas`;
+const ACCEPTED_CANDIDACIES = `<span class="with-icon--before me-1">${ACCEPTED_ICON}</span>Aceptado`;
+const PENDING_CANDIDACIES = `<span class="with-icon--before me-1">${PENDING_ICON}</span>En espera`;
+const DENIED_CANDIDACIES = `<span class="with-icon--before me-1">${DENIED_ICON}</span>Denegado`;
 
 /**
  * Removes all child nodes for the element specified
@@ -54,7 +60,15 @@ const removeInputError = (elementName) => {
 function removeLoading() {
   setTimeout(function () {
     document.getElementById('loading').style.display = 'none';
-  }, 500);
+  }, 1000);
+}
+
+/**
+ * Removes Loading animation function
+ */
+function loading() {
+  document.getElementById('loading').removeAttribute("style");
+  removeLoading();
 }
 
 /**
@@ -81,8 +95,8 @@ function getRole() {
         return resolve(data.user.role_id);
       } else {
         // Show error message
-        console.log(data.message)
-        return resolve(null);
+        console.log('Error:', data.message)
+        return resolve(data.message);
       }
     })
     // Show API request error
@@ -124,9 +138,10 @@ function logout() {
 /**
  * Delete user
  * 
- * @param {Integer} id 
+ * @param {Integer} id
+ * @param {Boolean} reload  
  */
-function deleteUser(id) {
+function deleteUser(id, reload) {
   if (confirm("¿Está seguro de eliminar el usuario?")) {
     // API Delete User request
     fetch(`${API_BASE_URL}users/${id}`, {
@@ -140,8 +155,11 @@ function deleteUser(id) {
       // Get JSON response and remove item
       .then((response) => response.json())
       .then((data) => {
-        if (data.status){
-          location.reload();
+        if (data.status && reload) {
+          window.location.reload();
+        }
+        else if (data.status && !reload) {
+          window.location.replace(DOCENTE_PAGE);
         }
         alert(data.message);
       })
@@ -150,4 +168,79 @@ function deleteUser(id) {
         console.log('Error:', error);
       });
   }
+}
+
+/**
+ * Get company specified by id
+ *
+ * @param {Integer} id
+ * @return {Promise} company
+ */
+function getCompany(id) {
+  // API get company data request
+  return new Promise((resolve, reject) =>
+    fetch(`${API_BASE_URL}companies/${id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      // Get JSON response
+      .then((response) => response.json())
+      .then((data) => {
+        // If status is true, return company information
+        if (data.status) {
+          return resolve(data.company);
+        } else {
+          // Show error message
+          console.log("Error:", data.message);
+          return resolve(data.message);
+        }
+      })
+      // Show API request error
+      .catch((error) => {
+        console.error("Error:", error);
+        return reject(error);
+      })
+  );
+}
+
+
+/**
+ * Get company list
+ *
+ * @param {Integer} id
+ * @return {Promise} companies
+ */
+function companies() {
+  // API get company data request
+  return new Promise((resolve, reject) =>
+    fetch(`${API_BASE_URL}companies`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      // Get JSON response
+      .then((response) => response.json())
+      .then((data) => {
+        // If status is true, return company information
+        if (data.status) {
+          return resolve(data.companies);
+        } else {
+          // Show error message
+          console.log("Error:", data.message);
+          return resolve(null);
+        }
+      })
+      // Show API request error
+      .catch((error) => {
+        console.error("Error:", error);
+        return reject(error);
+      })
+  );
 }
