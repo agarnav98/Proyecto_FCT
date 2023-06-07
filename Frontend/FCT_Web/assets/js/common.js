@@ -101,6 +101,8 @@ function getRole() {
     })
     // Show API request error
     .catch((error) => {
+      alert("Error al conectar con el servidor.")
+      window.location.replace(LOGIN_PAGE);
       console.error('Error:', error);
       return reject(error)
     })))
@@ -211,7 +213,6 @@ function getCompany(id) {
 /**
  * Get company list
  *
- * @param {Integer} id
  * @return {Promise} companies
  */
 function companies() {
@@ -231,6 +232,42 @@ function companies() {
         // If status is true, return company information
         if (data.status) {
           return resolve(data.companies);
+        } else {
+          // Show error message
+          console.log("Error:", data.message);
+          return resolve(null);
+        }
+      })
+      // Show API request error
+      .catch((error) => {
+        console.error("Error:", error);
+        return reject(error);
+      })
+  );
+}
+
+/**
+ * Get roles list
+ *
+ * @return {Promise} companies
+ */
+function roles() {
+  // API get roles data request
+  return new Promise((resolve, reject) =>
+    fetch(`${API_BASE_URL}roles`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      // Get JSON response
+      .then((response) => response.json())
+      .then((data) => {
+        // If status is true, return company information
+        if (data.status) {
+          return resolve(data.roles);
         } else {
           // Show error message
           console.log("Error:", data.message);

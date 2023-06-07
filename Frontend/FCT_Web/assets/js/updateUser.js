@@ -335,9 +335,10 @@ window.addEventListener("DOMContentLoaded", () => {
     const lastName = document.getElementById("last-name");
     const dni = document.getElementById("dni");
     const email = document.getElementById("email");
+    const divPassword = document.getElementById("div-password");
     const mobile = document.getElementById("mobile");
     const birth = document.getElementById("birth");
-    const role = document.getElementById("role");
+    const selectRole = document.getElementById("role");
     const address = document.getElementById("address");
     const town = document.getElementById("town");
     const preferences = document.getElementById("preferences");
@@ -347,6 +348,16 @@ window.addEventListener("DOMContentLoaded", () => {
     const btnCancel = document.getElementById("btn-cancel");
     const selectCompany = document.getElementById("select-company");
     const btnAdd = document.getElementById("btn-add");
+
+    // Create select roles
+    roles().then((roles) => {
+        Array.from(roles).forEach(role => {
+            let option = document.createElement('option');
+            option.value = role.id;
+            option.appendChild(document.createTextNode(role.role));
+            selectRole.appendChild(option);
+        });
+    });
 
     let companiesName = [];
     // Gets all companies
@@ -369,7 +380,7 @@ window.addEventListener("DOMContentLoaded", () => {
             email.value = user.email;
             mobile.value = user.mobile;
             birth.value = user.birth;
-            role.value = user.role_id;
+            selectRole.value = user.role_id;
             address.value = user.address;
             town.value = user.town;
             preferences.value = user.preferences;
@@ -484,12 +495,13 @@ window.addEventListener("DOMContentLoaded", () => {
             input.removeAttribute("readonly");
         });
         // Changes select role
-        role.className = "form-select form-select-lg";
-        role.removeAttribute("readonly");
-        role.removeAttribute("tabindex");
-        role.removeAttribute("style");
+        selectRole.className = "form-select form-select-lg";
+        selectRole.removeAttribute("readonly");
+        selectRole.removeAttribute("tabindex");
+        selectRole.removeAttribute("style");
 
         // Hidden elements
+        divPassword.removeAttribute("hidden");
         btnEdit.setAttribute("hidden", "");
         btnDelete.setAttribute("hidden", "");
         btnUpdate.removeAttribute("hidden");

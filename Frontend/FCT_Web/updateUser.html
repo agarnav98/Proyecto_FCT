@@ -269,8 +269,8 @@
                                                     <div class="form-floating">
                                                         <input type="text" id="last-name"
                                                             class="form-control-plaintext form-control-lg" readonly
-                                                            placeholder="Apellidos" />
-                                                        <label for="last-name">Apellidos<span class="required" hidden>
+                                                            placeholder="Apellido" />
+                                                        <label for="last-name">Apellido<span class="required" hidden>
                                                                 *</span></label>
                                                         <p id="error-last-name" class="small text-danger"></p>
                                                     </div>
@@ -300,11 +300,11 @@
                                                 </div>
 
                                                 <div class="col-md-6 mb-4">
-                                                    <div class="form-floating">
+                                                    <div class="form-floating" id="div-password" hidden>
                                                         <input type="password" id="password"
                                                             class="form-control-plaintext form-control-lg" readonly
-                                                            placeholder="Cambiar Contraseña" />
-                                                        <label for="password">Cambiar Contraseña</label>
+                                                            placeholder="Modificar Contraseña" />
+                                                        <label for="password">Modificar Contraseña</label>
                                                         <p id="error-password" class="small text-danger"></p>
                                                     </div>
                                                 </div>
@@ -338,8 +338,6 @@
                                                             id="role" placeholder="Rol"
                                                             style="pointer-events: none; appearance: none;"
                                                             tabindex="-1">
-                                                            <option value="1">Docente</option>
-                                                            <option value="2">Alumno</option>
                                                         </select>
                                                         <label for="role">Rol<span class="required" hidden>
                                                                 *</span></label>
