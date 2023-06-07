@@ -342,7 +342,7 @@ class CompanyController extends Controller
             // Error user has associated candidacies
             return response()->json([
                 'status' => false,
-                'message' => 'Company has associated candidacies'
+                'message' => 'No se puede eliminar una compañía con candidaturas asociadas.'
             ], 409);       
         }
         else 
@@ -351,7 +351,7 @@ class CompanyController extends Controller
             $company->delete();
             return response()->json([
                 'status' => true,
-                'message' => 'Company and associated headquarters deleted'
+                'message' => 'Compañía y sedes asociadas eliminadas.'
             ], 200); 
         }
     }

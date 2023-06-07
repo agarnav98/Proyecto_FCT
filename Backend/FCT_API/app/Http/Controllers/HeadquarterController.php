@@ -114,9 +114,56 @@ class HeadquarterController extends Controller
         // Return the response with the new headquarter data
         return response()->json([
             'status' => true,
-            'message' => 'Headquarter successfully created',
+            'message' => 'Sede añadida.',
             'headquarter' => $headquarter
         ], 201);
+    }
+
+    /**
+     * Display the specified headquarter.
+     *
+     * @param  int  $id
+     * @return json
+     */
+    public function show($id)
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+        elseif($user->role_id != 1)
+        {
+            // Only users with role 1 can show the user
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission'
+            ], 401);
+        }
+
+        // Find the headquarter
+        $showHeadquarter = Headquarter::with('company')->find($id);
+
+        if (!$showHeadquarter)
+        {
+            // Error user does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'Headquarter does not exist'
+            ], 404);
+        }
+
+        // Return user data
+        return response()->json([
+            'status' => true,
+            'headquarter' => $showHeadquarter
+        ], 200);      
     }
 
     /**
@@ -221,7 +268,7 @@ class HeadquarterController extends Controller
         // Return the response with the new headquarter data
         return response()->json([
             'status' => true,
-            'message' => 'Headquarter successfully updated',
+            'message' => 'Sede actualizada.',
             'headquarter' => $headquarter
         ], 200);
     }
@@ -270,7 +317,7 @@ class HeadquarterController extends Controller
         $headquarter->delete();
         return response()->json([
             'status' => true,
-            'message' => 'Headquarter deleted'
+            'message' => 'Sede eliminada.'
         ], 200); 
     }
 }

@@ -49,6 +49,7 @@ Route::group(['middleware' => ['jwt.verify']], function()
     
     // Headquarter CRUD
     Route::post('companies/{id}/headquarters', [HeadquarterController::class, 'store']);
+    Route::get('headquarters/{id}', [HeadquarterController::class, 'show']);
     Route::put('headquarters/{id}', [HeadquarterController::class, 'update']);
     Route::delete('headquarters/{id}', [HeadquarterController::class, 'destroy']);
 
