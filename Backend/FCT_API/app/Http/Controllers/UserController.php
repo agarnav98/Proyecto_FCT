@@ -80,6 +80,7 @@ class UserController extends Controller
         $data = $request->only(
             'email',  
             'password',
+            'password_repeat',
             'name', 
             'last_name',
             'dni',
@@ -91,6 +92,7 @@ class UserController extends Controller
         $rules = [
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|between:8,16',
+            'password_repeat' => 'required|string',
             'name' => 'required|string|max:35',
             'last_name' => 'required|string|max:35',
             'dni' => 'required|string|size:9|unique:users',
@@ -105,6 +107,8 @@ class UserController extends Controller
             'email' => 'Email inválido.',
             'password.required' => 'Contraseña requerida.',
             'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
+            'password_repeat.required' => 'Repetir contraseña requerido.',
+            'password_repeat.string' => 'El repetir cotraseña debe ser una cadena de texto.',
             'name.required' => 'Nombre requerido.',
             'name.string' => 'El nombre debe ser una cadena de texto.',
             'name.max' => 'El nombre no debe superar los :max caracteres.',
@@ -138,6 +142,12 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
+            ], 400);            
+        }
+        else if ($request->password != $request->password_repeat){
+            return response()->json([
+                'status' => false,
+                'message' => ['password_repeat' => ['No coinciden las contraseñas.']]
             ], 400);            
         }
         // DNI Validation
