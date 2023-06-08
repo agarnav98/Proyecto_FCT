@@ -17,11 +17,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- JavaScript integrity -->
     <script src="assets/js/common.js"></script>
-    <script src="assets/js/companies.js"></script>
+    <script src="assets/js/showCompany.js"></script>
     <!-- Web Icon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico">
     <!-- Page Title -->
-    <title>Listado Empresas</title>
+    <title>Actualizar Compañía</title>
 </head>
 
 <body style="background-color: #eee;">
@@ -91,7 +91,7 @@
                     <li class="mb-3">
                         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                             data-bs-target="#company-collapse" aria-expanded="false">
-                            Empresas
+                            Empresa
                         </button>
                         <div class="collapse" id="company-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal small">
@@ -231,15 +231,153 @@
         </div>
     </nav>
 
-    <!-- Main Companies List -->
+    <!-- Company information -->
     <main>
         <section>
             <div class="container-fluid py-5">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <div class="table-responsive">
-                            <table id="companies" class="display responsive nowrap compact" style="width: 100%;">
-                            </table>
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-xl-10">
+                        <div class="card rounded-3 text-black">
+                            <div class="row g-0">
+                                <div class="col-lg-6">
+                                    <div class="card-body pt-md-5 mx-md-2">
+                                        <h4 class="my-3 pb-2">
+                                            <nav aria-label="breadcrumb">
+                                                <ol class="breadcrumb justify-content-center">
+                                                    <li class="breadcrumb-item"><a href="companies.html">Empresas</a>
+                                                    </li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Actualizar
+                                                        Empresa
+                                                    </li>
+                                                </ol>
+                                            </nav>
+                                        </h4>
+
+                                        <form id="form-update">
+                                            <div class="row">
+                                                <div class="col-md-9 mb-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" id="name"
+                                                            class="form-control-plaintext form-control-lg" readonly
+                                                            placeholder="Nombre" />
+                                                        <label for="name">Nombre<span class="required" hidden>
+                                                                *</span></label>
+                                                        <p id="error-name" class="small text-danger"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" id="cif"
+                                                            class="form-control-plaintext form-control-lg" readonly
+                                                            placeholder="CIF" />
+                                                        <label for="cif">CIF<span class="required" hidden>
+                                                                *</span></label>
+                                                        <p id="error-cif" class="small text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12 mb-4">
+                                                    <div class="form-floating">
+                                                        <input type="email" id="email"
+                                                            class="form-control-plaintext form-control-lg" readonly
+                                                            placeholder="Correo electrónico" />
+                                                        <label for="email">Correo electrónico<span class="required"
+                                                                hidden> *</span></label>
+                                                        <p id="error-email" class="small text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <div class="float-start mb-4 pb-2">
+                                            <button id="btn-edit"
+                                                class="btn btn-outline-primary btn-block text-uppercase fw-bold">Editar</button>
+                                            <button id="btn-update"
+                                                class="btn btn-outline-primary btn-block text-uppercase fw-bold"
+                                                hidden>Actualizar</button>
+                                        </div>
+                                        <div class="float-end mb-4 pb-2">
+                                            <button id="btn-delete"
+                                                class="btn btn-outline-danger btn-block text-uppercase fw-bold">Eliminar</button>
+                                            <button id="btn-cancel"
+                                                class="btn btn-outline-danger btn-block text-uppercase fw-bold"
+                                                hidden>Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 d-flex px-2" id="table-candidacy">
+                                    <div class="table pt-md-5 mx-md-2">
+                                        <h4 class="my-3 pb-2 text-center">
+                                            Sedes
+                                        </h4>
+                                        <table id="headquarters" class="display responsive nowrap compact"
+                                            style="width: 100%;">
+                                        </table>
+                                        <form class="pt-4 mt-2" id="form-headquarter">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-floating">
+                                                        <input type="text" id="name-headquarter"
+                                                            class="form-control form-control-lg"
+                                                            placeholder="Nombre sede" />
+                                                        <label for="name-headquarter">Nombre sede<span
+                                                                class="required">*</span></label>
+                                                        <p id="error-name-headquarter" class="small text-danger"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" id="mobile"
+                                                            class="form-control form-control-lg"
+                                                            placeholder="Teléfono" />
+                                                        <label for="mobile">Teléfono<span
+                                                                class="required">*</span></label>
+                                                        <p id="error-mobile" class="small text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-floating">
+                                                        <input type="text" id="address"
+                                                            class="form-control form-control-lg"
+                                                            placeholder="Dirección" />
+                                                        <label for="address">Dirección<span
+                                                                class="required">*</span></label>
+                                                        <p id="error-address" class="small text-danger"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating">
+                                                        <input type="text" id="town"
+                                                            class="form-control form-control-lg"
+                                                            placeholder="Localidad" />
+                                                        <label for="town">Localidad<span
+                                                                class="required">*</span></label>
+                                                        <p id="error-town" class="small text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center mb-1 pb-2">
+                                                <button id="btn-add"
+                                                    class="btn btn-outline-success btn-block text-uppercase fw-bold"
+                                                    type="submit">Añadir</button>
+                                            </div>
+                                        </form>
+                                        <div class="float-start mb-1 pb-2" id="div-btn-update" hidden>
+                                            <button id="btn-update-headquarter"
+                                                class="btn btn-outline-primary btn-block text-uppercase fw-bold">Actualizar</button>
+                                        </div>
+                                        <div class="float-end mb-1 pb-2" id="div-btn-cancel" hidden>
+                                            <button id="btn-cancel-headquarter"
+                                                class="btn btn-outline-danger btn-block text-uppercase fw-bold">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

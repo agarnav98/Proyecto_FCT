@@ -3,8 +3,11 @@ const API_BASE_URL = "http://127.0.0.1:8000/api/";
 const LOGIN_PAGE = "index.html"
 const DOCENTE_PAGE = "users.html";
 const ALUMNO_PAGE = "alumno.html";
-const USER_SHOW_PAGE = "updateUser.html";
-const NEW_USER_PAGE = "newUser.html"
+const USER_SHOW_PAGE = "showUser.html";
+const NEW_USER_PAGE = "newUser.html";
+const COMPANIES_PAGE = "companies.html";
+const COMPANY_SHOW_PAGE = "showCompany.html";
+const NEW_COMPANY_PAGE = "newCompany.html";
 
 // SVG Icons
 const EMPTY_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">
@@ -31,6 +34,7 @@ const EMPTY_CANDIDACIES = `<span class="with-icon--before me-1">${EMPTY_ICON}</s
 const ACCEPTED_CANDIDACIES = `<span class="with-icon--before me-1">${ACCEPTED_ICON}</span>Aceptado`;
 const PENDING_CANDIDACIES = `<span class="with-icon--before me-1">${PENDING_ICON}</span>En espera`;
 const DENIED_CANDIDACIES = `<span class="with-icon--before me-1">${DENIED_ICON}</span>Denegado`;
+const EMPTY_HEADQUARTERS = `<span class="with-icon--before me-1">${EMPTY_ICON}</span>Sin sedes`;
 
 /**
  * Removes all child nodes for the element specified
@@ -173,80 +177,6 @@ function deleteUser(id, reload) {
 }
 
 /**
- * Get company specified by id
- *
- * @param {Integer} id
- * @return {Promise} company
- */
-function getCompany(id) {
-  // API get company data request
-  return new Promise((resolve, reject) =>
-    fetch(`${API_BASE_URL}companies/${id}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      // Get JSON response
-      .then((response) => response.json())
-      .then((data) => {
-        // If status is true, return company information
-        if (data.status) {
-          return resolve(data.company);
-        } else {
-          // Show error message
-          console.log("Error:", data.message);
-          return resolve(data.message);
-        }
-      })
-      // Show API request error
-      .catch((error) => {
-        console.error("Error:", error);
-        return reject(error);
-      })
-  );
-}
-
-
-/**
- * Get company list
- *
- * @return {Promise} companies
- */
-function companies() {
-  // API get company data request
-  return new Promise((resolve, reject) =>
-    fetch(`${API_BASE_URL}companies`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      // Get JSON response
-      .then((response) => response.json())
-      .then((data) => {
-        // If status is true, return company information
-        if (data.status) {
-          return resolve(data.companies);
-        } else {
-          // Show error message
-          console.log("Error:", data.message);
-          return resolve(null);
-        }
-      })
-      // Show API request error
-      .catch((error) => {
-        console.error("Error:", error);
-        return reject(error);
-      })
-  );
-}
-
-/**
  * Get roles list
  *
  * @return {Promise} companies
@@ -280,4 +210,75 @@ function roles() {
         return reject(error);
       })
   );
+}
+
+/**
+ * Get company list
+ *
+ * @return {Promise} companies
+ */
+function companies() {
+  // API get company data request
+  return new Promise((resolve, reject) =>
+    fetch(`${API_BASE_URL}companies`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      // Get JSON response
+      .then((response) => response.json())
+      .then((data) => {
+        // If status is true, return company list
+        if (data.status) {
+          return resolve(data.companies);
+        } else {
+          // Show error message
+          console.log("Error:", data.message);
+          return resolve(null);
+        }
+      })
+      // Show API request error
+      .catch((error) => {
+        console.error("Error:", error);
+        return reject(error);
+      })
+  );
+}
+
+/**
+ * Delete user
+ * 
+ * @param {Integer} id
+ * @param {Boolean} reload  
+ */
+function deleteCompany(id, reload) {
+  if (confirm("¿Está seguro de eliminar la empresa?")) {
+    // API Delete User request
+    fetch(`${API_BASE_URL}companies/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+    })
+      // Get JSON response and remove item
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status && reload) {
+          window.location.reload();
+        }
+        else if (data.status && !reload) {
+          window.location.replace(COMPANIES_PAGE);
+        }
+        alert(data.message);
+      })
+      // Show API request error
+      .catch((error) => {
+        console.log('Error:', error);
+      });
+  }
 }

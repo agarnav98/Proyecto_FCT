@@ -77,7 +77,7 @@ function updateCandidacy(id, status) {
 }
 
 /**
- * Delete user
+ * Delete candidacy
  * 
  * @param {Integer} id
  */
@@ -385,7 +385,7 @@ window.addEventListener("DOMContentLoaded", () => {
             town.value = user.town;
             preferences.value = user.preferences;
 
-            // Creates user table
+            // Creates candidacies table
             new DataTable("#candidacies", {
                 dom: 'Bfrtip',
                 // Table buttons
@@ -449,7 +449,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     {
                         title: "Cambiar estado",
                         data: "id",
-                        // Show candidacies status
+                        // Buttons to change status
                         render: (data) => {
                             return `<a class="link rounded mx-2" onclick="updateCandidacy(${data}, ${true})">${ACCEPTED_ICON}</a>
                             <a class="link rounded mx-2" onclick="updateCandidacy(${data}, ${null})">${PENDING_ICON}</a>
@@ -459,7 +459,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     {
                         title: "Eliminar",
                         data: "id",
-                        // Show candidacies status
+                        // Delete icon
                         render: (data) => {
                             return `<a class="link rounded ms-3" onclick="deleteCandidacy(${data})">${DELETE_ICON}</a>`;
                         }
