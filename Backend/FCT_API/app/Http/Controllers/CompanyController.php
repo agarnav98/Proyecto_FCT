@@ -29,14 +29,6 @@ class CompanyController extends Controller
                 'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
-        elseif($user->role_id != 1)
-        {
-            // Only users with role 1 can display the list
-            return response()->json([
-                'status' => false,
-                'message' => 'User does not have permission'
-            ], 403);
-        }
 
         // List all companies with heardquarters
         $companies = Company::with('headquarters')->get();

@@ -8,6 +8,7 @@ const NEW_USER_PAGE = "newUser.html";
 const COMPANIES_PAGE = "companies.html";
 const COMPANY_SHOW_PAGE = "showCompany.html";
 const NEW_COMPANY_PAGE = "newCompany.html";
+const ALUMNO_COMPANY_PAGE = "alumnoCompany.html";
 
 // SVG Icons
 const EMPTY_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">
@@ -245,6 +246,43 @@ function companies() {
         console.error("Error:", error);
         return reject(error);
       })
+  );
+}
+
+/**
+ * Get company specified by id
+ *
+ * @param {Integer} id
+ * @return {Promise} company
+ */
+function getCompany(id) {
+  // API get company data request
+  return new Promise((resolve, reject) =>
+      fetch(`${API_BASE_URL}companies/${id}`, {
+          method: "GET",
+          headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+      })
+          // Get JSON response
+          .then((response) => response.json())
+          .then((data) => {
+              // If status is true, return company information
+              if (data.status) {
+                  return resolve(data.company);
+              } else {
+                  // Show error message
+                  console.log("Error:", data.message);
+                  return resolve(data.message);
+              }
+          })
+          // Show API request error
+          .catch((error) => {
+              console.error("Error:", error);
+              return reject(error);
+          })
   );
 }
 
