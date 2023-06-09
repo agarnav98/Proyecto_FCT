@@ -80,6 +80,7 @@ class UserController extends Controller
         $data = $request->only(
             'email',  
             'password',
+            'password_repeat',
             'name', 
             'last_name',
             'dni',
@@ -90,11 +91,12 @@ class UserController extends Controller
         // Rules to validate the data
         $rules = [
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:8|max:16',
+            'password' => 'required|string|between:8,16',
+            'password_repeat' => 'required|string',
             'name' => 'required|string|max:35',
             'last_name' => 'required|string|max:35',
             'dni' => 'required|string|size:9|unique:users',
-            'mobile' => 'required|string|min:9|max:15|unique:users',
+            'mobile' => 'required|string|between:9,15|unique:users',
             'role_id' => 'required|in:1,2'
         ];
 
@@ -102,9 +104,11 @@ class UserController extends Controller
         $messages = [
             'email.required' => 'Email requerido.',
             'email.unique' => 'El email ya ha sido registrado',
-            'email' => 'Email inválido',
-            'password.required' => 'Contraseña requerida',
+            'email' => 'Email inválido.',
+            'password.required' => 'Contraseña requerida.',
             'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
+            'password_repeat.required' => 'Repetir contraseña requerido.',
+            'password_repeat.string' => 'El repetir cotraseña debe ser una cadena de texto.',
             'name.required' => 'Nombre requerido.',
             'name.string' => 'El nombre debe ser una cadena de texto.',
             'name.max' => 'El nombre no debe superar los :max caracteres.',
@@ -140,6 +144,12 @@ class UserController extends Controller
                 'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
             ], 400);            
         }
+        else if ($request->password != $request->password_repeat){
+            return response()->json([
+                'status' => false,
+                'message' => ['password_repeat' => ['No coinciden las contraseñas.']]
+            ], 400);            
+        }
         // DNI Validation
         if (!UtilsValidator::validatorDNI($request->dni)){
             return response()->json([
@@ -160,8 +170,8 @@ class UserController extends Controller
             'email' => $request->email,
             // Encrypt password for security
             'password' => bcrypt($request->password),
-            'name' => $request->name,
-            'last_name' => $request->last_name,
+            'name' => ucfirst($request->name),
+            'last_name' => ucfirst($request->last_name),
             'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
             'role_id' => $request->role_id
@@ -301,7 +311,6 @@ class UserController extends Controller
             'town',
             'birth',
             'preferences',
-            'cv',
             'role_id'
         );
 
@@ -316,13 +325,13 @@ class UserController extends Controller
         {
             $dniRule = 'required|string|size:9';
         }
-        $mobileRule = 'required|string|min:9|max:15|unique:users';
+        $mobileRule = 'required|string|between:9,15|unique:users';
         if ($request->mobile == $updateUser->mobile)
         {
-            $mobileRule = 'required|string|min:9|max:15';
+            $mobileRule = 'required|string|between:9,15';
         }
         // Update password only if a new one is received
-        $passwordRule = 'string|min:8|max:16';
+        $passwordRule = 'string|between:8,16';
         if ($request->password == null)
         {
             $passwordRule = '';
@@ -340,7 +349,6 @@ class UserController extends Controller
             'town' => 'string|max:35|nullable',
             'birth' => 'date|nullable',
             'preferences' => 'string|nullable',
-            'cv' => 'string|max:255|nullable',
             'role_id' => 'required|in:1,2'
         ];
 
@@ -368,7 +376,6 @@ class UserController extends Controller
             'town.max' => 'La localidad no debe superar los :max caracteres.',
             'birth' => 'Formato de fecha no válido.',
             'preferences' => 'Las preferencias debe ser una cadena de texto.',
-            'cv' => 'Formato del documento no válido.',
             'role_id.required' => 'Rol requerido.',
             'role_id' => 'Rol inválido.'
         ];
@@ -414,15 +421,14 @@ class UserController extends Controller
         // Update user if validation is successful
         $updateUser->update([
             'email' => $request->email,
-            'name' => $request->name,
-            'last_name' => $request->last_name,
+            'name' => ucfirst($request->name),
+            'last_name' => ucfirst($request->last_name),
             'dni' => strtoupper($request->dni),
             'mobile' => $request->mobile,
-            'address' => $request->address, 
-            'town' => $request->town,
+            'address' => ucfirst($request->address), 
+            'town' => ucfirst($request->town),
             'birth' => $request->birth,
-            'preferences' => $request->preferences,
-            'cv' => $request->cv,
+            'preferences' => ucfirst($request->preferences),
             'role_id' => $request->role_id
         ]);
         
@@ -470,17 +476,16 @@ class UserController extends Controller
             'address',
             'town',
             'birth',
-            'preferences',
-            'cv'
+            'preferences'
         );
 
         // Update fields with unique rules
-        $mobileRule = 'required|string|min:9|max:15|unique:users';
+        $mobileRule = 'required|string|between:9,15|unique:users';
         if ($request->mobile == $user->mobile){
-            $mobileRule = 'required|string|min:9|max:15';
+            $mobileRule = 'required|string|between:9,15';
         }
         // Update password only if a new one is received
-        $passwordRule = 'string|min:8|max:16';
+        $passwordRule = 'string|between:8,16';
         if ($request->password == null){
             $passwordRule = '';
         }
@@ -492,8 +497,7 @@ class UserController extends Controller
             'address'=> 'string|max:255|nullable',
             'town' => 'string|max:35|nullable',
             'birth' => 'date|nullable',
-            'preferences' => 'string|nullable',
-            'cv' => 'string|max:255|nullable'
+            'preferences' => 'string|nullable'
         ];
 
         // Custom messages for validation
@@ -507,8 +511,7 @@ class UserController extends Controller
             'town.string' => 'La localidad debe ser una cadena de texto.',
             'town.max' => 'La localidad no debe superar los :max caracteres.',
             'birth' => 'Formato de fecha no válido.',
-            'preferences' => 'Las preferencias debe ser una cadena de texto.',
-            'cv' => 'Formato del documento no válido.'
+            'preferences' => 'Las preferencias debe ser una cadena de texto.'
         ];
 
 
@@ -547,8 +550,7 @@ class UserController extends Controller
             'address' => $request->address, 
             'town' => $request->town,
             'birth' => $request->birth,
-            'preferences' => $request->preferences,
-            'cv' => $request->cv
+            'preferences' => $request->preferences
         ]);
 
         // Update password only if a new one is received
@@ -565,6 +567,163 @@ class UserController extends Controller
             'message' => 'User successfully updated',
             'user' => $user
         ], 200);
+    }
+
+    /**
+     * Uploads user CV.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */
+    public function uploadCV(Request $request)
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+
+        // Request only past data
+        $data = $request->only('cv');
+
+        // Rules to validate the data
+        $rules = ['cv' => 'required|mimes:pdf|max:2048'];
+
+        // Custom messages for validation
+        $messages = [
+            'cv.required' => 'No ha seleccionado el documento pdf.',
+            'cv.mimes' => 'El formato del documento debe ser pdf.',
+            'cv.max' => 'El documento no debe ser mayor de 2MB.'
+        ];
+
+        // Data request validation
+        $validator = Validator::make($data, $rules, $messages);
+
+        // Returning error if validation fails
+        if ($validator->fails())
+        {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->messages()
+            ], 400);
+        }
+
+        // Save the file with the user id
+        $file = $request->file('cv');
+        $fileName = $user->id.'.'.$file->extension(); 
+        $cvPath = $file->storeAs('cv', $fileName);
+
+        // Update user cv path if validation is successful
+        $user->update([
+            'cv' => $cvPath
+        ]);
+
+        // Return the response
+        return response()->json([
+            'status' => true,
+            'message' => 'CV subido correctamente.'
+        ], 200);
+    }
+
+    /**
+     * Downloads user CV.
+     *
+     * @param  int  $id
+     * @return json
+     */
+    public function downloadCV($id)
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+        elseif($user->role_id != 1 && $user->id != $id)
+        {
+            // Only users with role 1 or user who owns the cv can download
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have permission'
+            ], 401);
+        }
+
+        // Find the cv
+        $userCv = User::find($id);
+
+        if (!$userCv)
+        {
+            // Error user does not exist
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not exist'
+            ], 404);
+        }
+        elseif ($userCv->cv == null)
+        {
+            // Error user doesnt have cv
+            return response()->json([
+                'status' => false,
+                'message' => 'User does not have cv'
+            ], 404);
+        }
+        else
+        {
+            // Return cv
+            return response()->download(storage_path('app/' . $userCv->cv), ('CV_' . $userCv->name . '_' . strtr($userCv->last_name, ' ', '_')));
+        }
+    }
+
+    /**
+     * Delete user CV.
+     *
+     * @return json
+     */
+    public function deleteCV()
+    {
+        // Authentication required
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if(!$user)
+        {
+            // Error invalid token
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Token / Expired Token'
+            ], 401);
+        }
+
+        if ($user->cv == null)
+        {
+            // Error user doesnt have cv
+            return response()->json([
+                'status' => false,
+                'message' => 'El usuario no tiene un CV guardado.'
+            ], 404);
+        }
+        else
+        {
+            // Delete cv
+            unlink(storage_path('app/' . $user->cv));
+            $user->update([
+                'cv' => null
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'CV eliminado.'
+            ], 200); 
+        }
     }
 
     /**
@@ -615,16 +774,22 @@ class UserController extends Controller
             // Error user has associated candidacies
             return response()->json([
                 'status' => false,
-                'message' => 'User has associated candidacies'
+                'message' => 'No se puede eliminar un usuario con candidaturas asociadas.'
             ], 409);       
         }
         else 
         {
+            // Delete CV
+            if ($destroyUser->cv != null)
+            {
+                // Delete cv
+                unlink(storage_path('app/' . $destroyUser->cv));
+            }            
             // Delete user
             $destroyUser->delete();
             return response()->json([
                 'status' => true,
-                'message' => 'User deleted'
+                'message' => 'Usuario eliminado.'
             ], 200); 
         }
     }

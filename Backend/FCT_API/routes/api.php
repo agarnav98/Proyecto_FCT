@@ -39,6 +39,9 @@ Route::group(['middleware' => ['jwt.verify']], function()
     Route::put('users/{id}', [UserController::class, 'update']);
     Route::put('user', [UserController::class, 'change']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
+    Route::post('cv', [UserController::class, 'uploadCV']);
+    Route::get('cv/{id}', [UserController::class, 'downloadCV']);
+    Route::delete('cv', [UserController::class, 'deleteCV']);
 
     // Company CRUD
     Route::get('companies', [CompanyController::class, 'index']);
@@ -49,6 +52,7 @@ Route::group(['middleware' => ['jwt.verify']], function()
     
     // Headquarter CRUD
     Route::post('companies/{id}/headquarters', [HeadquarterController::class, 'store']);
+    Route::get('headquarters/{id}', [HeadquarterController::class, 'show']);
     Route::put('headquarters/{id}', [HeadquarterController::class, 'update']);
     Route::delete('headquarters/{id}', [HeadquarterController::class, 'destroy']);
 

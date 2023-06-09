@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
+use App\Utils\UtilsValidator;
 
 class AuthController extends Controller
 {
@@ -20,12 +21,23 @@ class AuthController extends Controller
     {
         // Request only the email and password
         $credentials = $request->only('email', 'password');
-        
-        // Credentials validation
-        $validator = Validator::make($credentials, [
+
+        // Rules to validate the data
+        $rules = [
             'email' => 'required|email',
-            'password' => 'required|string|min:8|max:16'
-        ]);
+            'password' => 'required|string|between:8,16'
+        ];
+
+        // Custom messages for validation
+        $messages = [
+            'email.required' => 'Email requerido.',
+            'email' => 'Email inválido.',
+            'password.required' => 'Contraseña requerida.',
+            'password' => 'La contraseña debe tener de :min a :max caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.',
+        ];
+
+        // Data request validation
+        $validator = Validator::make($credentials, $rules, $messages);
 
         // Returning error if validation fails
         if ($validator->fails())
@@ -34,6 +46,13 @@ class AuthController extends Controller
                 'status' => false,
                 'message' => $validator->messages()
             ], 400);
+        }
+        // Password Validation
+        if (!UtilsValidator::validatorPassword($request->password)){
+            return response()->json([
+                'status' => false,
+                'message' => ['password' => ['La contraseña debe tener de 8 a 16 caracteres y contener al menos: 1 mayúscula, 1 minúscula, 1 dígito y 1 carácter especial.']]
+            ], 400);            
         }
 
         // Try to login
@@ -44,7 +63,7 @@ class AuthController extends Controller
                 // Incorrect credentials
                 return response()->json([
                     'status' => false,
-                    'message' => 'Login failed: incorrect credentials'
+                    'message' => ['login' => ['Las credenciales son incorrectas.']]
                 ], 401);
             }
         } 
@@ -67,10 +86,9 @@ class AuthController extends Controller
     /**
      * Logout user function to destroy token and disconnect user.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return json
      */ 
-    public function logout(Request $request)
+    public function logout()
     {
         try 
         {

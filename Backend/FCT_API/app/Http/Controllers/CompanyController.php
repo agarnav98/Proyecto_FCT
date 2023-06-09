@@ -29,14 +29,6 @@ class CompanyController extends Controller
                 'message' => 'Invalid Token / Expired Token'
             ], 401);
         }
-        elseif($user->role_id != 1)
-        {
-            // Only users with role 1 can display the list
-            return response()->json([
-                'status' => false,
-                'message' => 'User does not have permission'
-            ], 403);
-        }
 
         // List all companies with heardquarters
         $companies = Company::with('headquarters')->get();
@@ -123,7 +115,7 @@ class CompanyController extends Controller
 
         // Create a new company if validation is successful
         $company = Company::create([
-            'name' => $request->name, 
+            'name' => ucfirst($request->name), 
             'cif' => strtoupper($request->cif),
             'email' => $request->email
         ]);
@@ -281,7 +273,7 @@ class CompanyController extends Controller
 
         // Update company if validation is successful
         $company->update([
-            'name' => $request->name, 
+            'name' => ucfirst($request->name), 
             'cif' => strtoupper($request->cif),
             'email' => $request->email
         ]);
@@ -342,7 +334,7 @@ class CompanyController extends Controller
             // Error user has associated candidacies
             return response()->json([
                 'status' => false,
-                'message' => 'Company has associated candidacies'
+                'message' => 'No se puede eliminar una compañía con candidaturas asociadas.'
             ], 409);       
         }
         else 
@@ -351,7 +343,7 @@ class CompanyController extends Controller
             $company->delete();
             return response()->json([
                 'status' => true,
-                'message' => 'Company and associated headquarters deleted'
+                'message' => 'Compañía y sedes asociadas eliminadas.'
             ], 200); 
         }
     }

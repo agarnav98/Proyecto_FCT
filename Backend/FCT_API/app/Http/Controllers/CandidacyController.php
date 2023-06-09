@@ -97,7 +97,7 @@ class CandidacyController extends Controller
             // Error user has an accepted candidacy
             return response()->json([
                 'status' => false,
-                'message' => 'User has an accepted candidacy'
+                'message' => ['candidacy' => ['El usuario ya tiene una candidatura aceptada.']]
             ], 400);           
         }        
 
@@ -140,7 +140,7 @@ class CandidacyController extends Controller
             // Error company does not exist
             return response()->json([
                 'status' => false,
-                'message' => 'Company does not exist'
+                'message' => ['company_id' => ['La compañía no existe.']]
             ], 404);
         }
 
@@ -152,7 +152,7 @@ class CandidacyController extends Controller
             // Error candidacy exists
             return response()->json([
                 'status' => false,
-                'message' => 'Candidacy already exists'
+                'message' => ['candidacy' => ['Ya existe esta candidatura.']]
             ], 400);           
         }
 
@@ -166,7 +166,7 @@ class CandidacyController extends Controller
         // Return the response with the new candidacy data
         return response()->json([
             'status' => true,
-            'message' => 'Candidacy successfully created',
+            'message' => 'Candidatura añadida.',
             'candidacy' => $candidacy
         ], 201);
     }
@@ -247,7 +247,7 @@ class CandidacyController extends Controller
             // Error user has an accepted candidacy
             return response()->json([
                 'status' => false,
-                'message' => 'User has an accepted candidacy'
+                'message' => 'El usuario ya tiene una candidatura aceptada.'
             ], 400);           
         }   
 
@@ -259,7 +259,7 @@ class CandidacyController extends Controller
         // Return the response with the new headquarter data
         return response()->json([
             'status' => true,
-            'message' => 'Candidacy successfully updated',
+            'message' => 'Estado actualizado.',
             'candidacy' => $candidacy
         ], 200);
     }
@@ -308,7 +308,7 @@ class CandidacyController extends Controller
         $candidacy->delete();
         return response()->json([
             'status' => true,
-            'message' => 'Candidacy deleted'
+            'message' => 'Candidatura eliminada.'
         ], 200); 
     }
 }
