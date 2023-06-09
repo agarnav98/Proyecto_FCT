@@ -326,7 +326,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     title: "Empresa",
                     data: "company_id",
                     render: (data) => {
-                        return `<a href="${ALUMNO_COMPANY_PAGE}?id=${data}" class="link rounded mx-2">${companiesName[data]}</a>`;
+                        return `<a href="${ALUMNO_COMPANY_PAGE}?id=${data}" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-2">${companiesName[data]}</a>`;
                     }
                 },
                 {
