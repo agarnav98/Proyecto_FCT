@@ -141,8 +141,8 @@
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-floating" id="div-password" hidden>
                                                         <input type="password" id="password"
-                                                            class="form-control-plaintext form-control-lg change" readonly
-                                                            placeholder="Modificar Contraseña" />
+                                                            class="form-control-plaintext form-control-lg change"
+                                                            readonly placeholder="Modificar Contraseña" />
                                                         <label for="password">Modificar Contraseña</label>
                                                         <p id="error-password" class="small text-danger"></p>
                                                     </div>
@@ -153,8 +153,8 @@
                                                 <div class="col-md-4 mb-4">
                                                     <div class="form-floating">
                                                         <input type="text" id="mobile"
-                                                            class="form-control-plaintext form-control-lg change" readonly
-                                                            placeholder="Teléfono" />
+                                                            class="form-control-plaintext form-control-lg change"
+                                                            readonly placeholder="Teléfono" />
                                                         <label for="mobile">Teléfono<span class="required" hidden>
                                                                 *</span></label>
                                                         <p id="error-mobile" class="small text-danger"></p>
@@ -164,8 +164,8 @@
                                                 <div class="col-md-4 mb-4">
                                                     <div class="form-floating">
                                                         <input type="date" id="birth"
-                                                            class="form-control-plaintext form-control-lg change" readonly
-                                                            placeholder="Fecha de nacimiento" />
+                                                            class="form-control-plaintext form-control-lg change"
+                                                            readonly placeholder="Fecha de nacimiento" />
                                                         <label for="birth">Fecha de nacimiento</label>
                                                         <p id="error-birth" class="small text-danger"></p>
                                                     </div>
@@ -175,8 +175,8 @@
                                                     <div class="col-md-8 mb-4">
                                                         <div class="form-floating">
                                                             <input type="text" id="address"
-                                                                class="form-control-plaintext form-control-lg change" readonly
-                                                                placeholder="Dirección" />
+                                                                class="form-control-plaintext form-control-lg change"
+                                                                readonly placeholder="Dirección" />
                                                             <label for="address">Dirección</label>
                                                             <p id="error-address" class="small text-danger"></p>
                                                         </div>
@@ -185,8 +185,8 @@
                                                     <div class="col-md-4 mb-4">
                                                         <div class="form-floating">
                                                             <input type="text" id="town"
-                                                                class="form-control-plaintext form-control-lg change" readonly
-                                                                placeholder="Localidad" />
+                                                                class="form-control-plaintext form-control-lg change"
+                                                                readonly placeholder="Localidad" />
                                                             <label for="town">Localidad</label>
                                                             <p id="error-town" class="small text-danger"></p>
                                                         </div>
@@ -196,7 +196,8 @@
                                                 <div class="row">
                                                     <div class="col-12 mb-4">
                                                         <div class="form-floating">
-                                                            <textarea class="form-control-plaintext form-control-lg change"
+                                                            <textarea
+                                                                class="form-control-plaintext form-control-lg change"
                                                                 readonly id="preferences" placeholder="Preferencias"
                                                                 style="height: 100px; resize: none;"></textarea>
                                                             <label for="preferences">Preferencias</label>
@@ -207,18 +208,29 @@
                                             </div>
                                         </form>
 
+                                        <div class="row">
+                                            <div class="col-md-12 mb-4 pb-2">
+                                                <p id="link-cv" class="text-uppercase fw-bold text-center"></p>
+                                                <div class="input-group">
+                                                    <input type="file" class="form-control" id="cv" accept=".pdf">
+                                                    <button class="btn btn-outline-secondary text-uppercase fw-bold" type="button" id="btn-upload-cv">Subir CV</button>
+                                                    <button class="btn btn-outline-danger text-uppercase fw-bold" type="button" id="btn-delete-cv">Eliminar CV</button>
+                                                </div>
+                                                <p id="error-cv" class="small text-danger"></p>
+                                            </div>
+                                        </div>
 
-                                        <div class="text-center mb-4 pb-2">
+                                        <div class="text-center pt-3">
                                             <button id="btn-edit"
                                                 class="btn btn-outline-primary btn-block text-uppercase fw-bold">Editar</button>
                                         </div>
 
-                                        <div class="float-start mb-4 pb-2">
+                                        <div class="float-start mb-4">
                                             <button id="btn-update"
                                                 class="btn btn-outline-primary btn-block text-uppercase fw-bold"
                                                 hidden>Actualizar</button>
                                         </div>
-                                        <div class="float-end mb-4 pb-2">
+                                        <div class="float-end mb-4">
                                             <button id="btn-cancel"
                                                 class="btn btn-outline-danger btn-block text-uppercase fw-bold"
                                                 hidden>Cancelar</button>

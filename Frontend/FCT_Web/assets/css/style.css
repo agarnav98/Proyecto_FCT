@@ -127,7 +127,8 @@ table th {
   white-space: nowrap;
 }
 
-a:hover{
+a:hover,
+#link-cv:hover{
   cursor: pointer;
 }
 

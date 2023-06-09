@@ -29,6 +29,10 @@ const PENDING_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xml
 const DENIED_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">
   <path d="M0 10C0 4.486 4.486 0 10 0s10 4.486 10 10-4.486 10-10 10S0 15.514 0 10zm7.707-3.707a1 1 0 00-1.414 1.414L8.586 10l-2.293 2.293a1 1 0 101.414 1.414L10 11.414l2.293 2.293a1 1 0 001.414-1.414L11.414 10l2.293-2.293a1 1 0 00-1.414-1.414L10 8.586 7.707 6.293z" fill="#a3190f"/>
 </svg>`;
+const DOWNLOAD_ICON = `<svg aria-hidden="true" focusable="false" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" width="20px">
+  <path d="M13.707 10.707a.999.999 0 10-1.414-1.414L11 10.586V3a1 1 0 10-2 0v7.586L7.707 9.293a.999.999 0 10-1.414 1.414l3 3a.999.999 0 001.414 0l3-3zM3 16a1 1 0 100 2h14a1 1 0 100-2H3z" fill="green"/>
+</svg>`;
+
 
 // Candidacies status icons
 const EMPTY_CANDIDACIES = `<span class="with-icon--before me-1">${EMPTY_ICON}</span>Sin candidaturas`;
@@ -36,6 +40,7 @@ const ACCEPTED_CANDIDACIES = `<span class="with-icon--before me-1">${ACCEPTED_IC
 const PENDING_CANDIDACIES = `<span class="with-icon--before me-1">${PENDING_ICON}</span>En espera`;
 const DENIED_CANDIDACIES = `<span class="with-icon--before me-1">${DENIED_ICON}</span>Denegado`;
 const EMPTY_HEADQUARTERS = `<span class="with-icon--before me-1">${EMPTY_ICON}</span>Sin sedes`;
+const DOWNLOAD_CV = `Descargar CV<span class="with-icon--after ms-1">${DOWNLOAD_ICON}</span>`;
 
 /**
  * Removes all child nodes for the element specified
@@ -258,31 +263,31 @@ function companies() {
 function getCompany(id) {
   // API get company data request
   return new Promise((resolve, reject) =>
-      fetch(`${API_BASE_URL}companies/${id}`, {
-          method: "GET",
-          headers: {
-              Accept: "application/json, text/plain, */*",
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+    fetch(`${API_BASE_URL}companies/${id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      // Get JSON response
+      .then((response) => response.json())
+      .then((data) => {
+        // If status is true, return company information
+        if (data.status) {
+          return resolve(data.company);
+        } else {
+          // Show error message
+          console.log("Error:", data.message);
+          return resolve(data.message);
+        }
       })
-          // Get JSON response
-          .then((response) => response.json())
-          .then((data) => {
-              // If status is true, return company information
-              if (data.status) {
-                  return resolve(data.company);
-              } else {
-                  // Show error message
-                  console.log("Error:", data.message);
-                  return resolve(data.message);
-              }
-          })
-          // Show API request error
-          .catch((error) => {
-              console.error("Error:", error);
-              return reject(error);
-          })
+      // Show API request error
+      .catch((error) => {
+        console.error("Error:", error);
+        return reject(error);
+      })
   );
 }
 
@@ -319,4 +324,70 @@ function deleteCompany(id, reload) {
         console.log('Error:', error);
       });
   }
+}
+
+/**
+ * Get logged user information
+ *
+ * @param {Integer} id
+ * @return {Promise} user
+ */
+function thisUser() {
+  // API get user data request
+  return new Promise((resolve, reject) =>
+    fetch(`${API_BASE_URL}user`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      // Get JSON response
+      .then((response) => response.json())
+      .then((data) => {
+        // If status is true, return user information
+        if (data.status) {
+          return resolve(data.user);
+        } else {
+          // Show error message
+          console.log("Error:", data.message);
+          return resolve(data.message);
+        }
+      })
+      // Show API request error
+      .catch((error) => {
+        console.error("Error:", error);
+        return reject(error);
+      })
+  );
+}
+
+/**
+ * Download user CV
+ *
+ * @param {Integer} id
+ */
+function downloadCV(id, name, lastName) {
+  // Download CV
+  fetch(`${API_BASE_URL}cv/${id}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
+  })
+    // Get JSON response and remove item
+    .then((response) => response.blob())
+    .then(data => {
+      var a = document.createElement("a");
+      a.href = window.URL.createObjectURL(data);
+      a.download = `CV_${name}_${lastName}`.split(' ').join('_');
+      a.click();
+    })
+    // Show API request error
+    .catch((error) => {
+      console.log('Error:', error);
+    });
 }

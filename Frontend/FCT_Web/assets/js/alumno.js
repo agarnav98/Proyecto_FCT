@@ -8,7 +8,6 @@ getRole().then((role_id) => {
 /**
  * Get logged user information
  *
- * @param {Integer} id
  * @return {Promise} user
  */
 function thisUser() {
@@ -142,6 +141,92 @@ function changeUser() {
         });
 }
 
+/**
+ * Send POST Upload CV to the API
+ *
+ */
+function uploadCV() {
+
+    // Form elements
+    const cv = document.getElementById("cv");
+    const btnUpload = document.getElementById("btn-upload-cv");
+    const errorCv = document.getElementById("error-cv");
+
+    // Reset form errors
+    removeInputError("cv");
+
+    // Disables the button while the request is generated
+    btnUpload.disabled = true;
+    btnUpload.textContent = "Espere..."
+
+    // Create form data file
+    let file = new FormData();
+    file.append('cv', cv.files[0]);
+
+    // API Login request
+    fetch(`${API_BASE_URL}cv`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json, text/plain, */*",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        // Sent cv data
+        body: file
+    })
+        // Get JSON response
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.status) {
+                alert(data.message);
+                window.location.reload();
+            } else {
+                // Show validation messages
+                removeAllChildNodes("error-cv");
+                if (data.message.cv) {
+                    cv.className += " is-invalid";
+                    errorCv.appendChild(document.createTextNode(data.message.cv[0]));
+                }
+            }
+            // Enables the button
+            btnUpload.disabled = false;
+            btnUpload.textContent = "Subir cv"
+        })
+        // Show API request error
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+}
+
+/**
+ * Delete CV
+ * 
+ */
+function deleteCV() {
+    if (confirm("¿Está seguro de eliminar su CV?")) {
+      // API Delete CV request
+      fetch(`${API_BASE_URL}cv`, {
+        method: "DELETE",
+        headers: {
+          "Accept": "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+      })
+        // Get JSON response and remove item
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status) {
+            window.location.reload();
+          }
+          alert(data.message);
+        })
+        // Show API request error
+        .catch((error) => {
+          console.log('Error:', error);
+        });
+    }
+  }
+
 // When loading the html, the script will be executed
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -162,6 +247,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const btnEdit = document.getElementById("btn-edit");
     const btnUpdate = document.getElementById("btn-update");
     const btnCancel = document.getElementById("btn-cancel");
+    const btnUploadCv = document.getElementById("btn-upload-cv");
+    const btnDeleteCv = document.getElementById("btn-delete-cv");
+    const linkCV = document.getElementById("link-cv");
 
     let companiesName = [];
     // Gets all companies
@@ -184,6 +272,17 @@ window.addEventListener("DOMContentLoaded", () => {
         address.value = user.address;
         town.value = user.town;
         preferences.value = user.preferences;
+
+        // Set link cv
+        if (user.cv == null) {
+            linkCV.appendChild(document.createTextNode("Todavía no has subido tu CV."));
+        }
+        else {
+            linkCV.innerHTML = DOWNLOAD_CV;
+            linkCV.addEventListener("click", () => {
+                downloadCV(user.id, user.name, user.last_name);
+            });
+        }
 
         // Creates candidacies table
         new DataTable("#candidacies", {
@@ -289,6 +388,15 @@ window.addEventListener("DOMContentLoaded", () => {
             window.location.reload();
         }
     });
+
+    btnUploadCv.addEventListener("click", () => {
+        uploadCV();
+    });
+
+    btnDeleteCv.addEventListener("click", () => {
+        deleteCV();
+    });
+
     // Finally, removes loading animation
     removeLoading();
 

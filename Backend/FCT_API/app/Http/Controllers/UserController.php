@@ -709,7 +709,7 @@ class UserController extends Controller
             // Error user doesnt have cv
             return response()->json([
                 'status' => false,
-                'message' => 'User does not have cv'
+                'message' => 'El usuario no tiene un CV guardado.'
             ], 404);
         }
         else
@@ -721,7 +721,7 @@ class UserController extends Controller
             ]);
             return response()->json([
                 'status' => true,
-                'message' => 'CV deleted'
+                'message' => 'CV eliminado.'
             ], 200); 
         }
     }
