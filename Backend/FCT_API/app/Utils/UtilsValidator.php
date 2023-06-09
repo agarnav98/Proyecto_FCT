@@ -29,6 +29,11 @@ class UtilsValidator
         $dniNumber = str_replace("Y", 1, $dniNumber);
         $dniNumber = str_replace("Z", 2, $dniNumber);
 
+        // Check that the string has replace
+        if (!is_numeric($dniNumber))
+        {
+          return false;
+        }
         // Get the position in the letters array by dividing by 23
         $position = $dniNumber % 23;
 
