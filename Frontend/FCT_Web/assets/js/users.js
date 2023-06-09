@@ -43,6 +43,11 @@ function users() {
 
 window.addEventListener("DOMContentLoaded", () => {
     users().then((users) => {
+        let userName = [];
+        // Gets all companies
+        Array.from(users).forEach(user => {
+            userName[user.id] = [user.name, user.last_name, user.cv];
+        });
         // Creates user table
         new DataTable("#users", {
             dom: 'Bfrtip',
@@ -138,7 +143,15 @@ window.addEventListener("DOMContentLoaded", () => {
                     }
                 },
                 { title: "Preferencias", data: "preferences", render: (data) => { if (data == "") { return EMPTY_ICON } else { return data } } },
-                { title: "CV", data: "cv"},
+                {
+                    title: "CV",
+                    data: "id",
+                    render: (data) => {
+                        if (userName[data][2] != null) {
+                            return `<a class="link rounded" onclick="downloadCV(${data}, '${userName[data][0]}', '${userName[data][1]}')">${DOWNLOAD_ICON}</a>`;
+                        }
+                    }
+                },
                 {
                     title: "Estado candidaturas",
                     data: "candidacies",
@@ -196,6 +209,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 { responsivePriority: 2, targets: 1 },
                 { responsivePriority: 3, targets: 12 },
                 { responsivePriority: 4, targets: 11 },
+                { responsivePriority: 5, targets: 10 },
                 { responsivePriority: 10001, targets: 9 }
             ],
             // Table language

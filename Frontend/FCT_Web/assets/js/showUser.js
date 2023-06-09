@@ -348,6 +348,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const btnCancel = document.getElementById("btn-cancel");
     const selectCompany = document.getElementById("select-company");
     const btnAdd = document.getElementById("btn-add");
+    const linkCV = document.getElementById("link-cv");
 
     // Create select roles
     roles().then((roles) => {
@@ -385,6 +386,16 @@ window.addEventListener("DOMContentLoaded", () => {
             town.value = user.town;
             preferences.value = user.preferences;
 
+            // Set link cv
+            if (user.cv == null) {
+                linkCV.appendChild(document.createTextNode("Sin CV subido."));
+            }
+            else {
+                linkCV.innerHTML = DOWNLOAD_CV;
+                linkCV.addEventListener("click", () => {
+                    downloadCV(user.id, user.name, user.last_name);
+                });
+            }
             // Creates candidacies table
             new DataTable("#candidacies", {
                 dom: 'Bfrtip',
